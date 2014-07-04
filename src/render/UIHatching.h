@@ -21,7 +21,7 @@ public:
     void    end();
     
     aColor  inkColor;
+    
 protected:
-//    void    guiEvent(ofxUIEventArgs &e);
     ofTexture   textures[6];
 };

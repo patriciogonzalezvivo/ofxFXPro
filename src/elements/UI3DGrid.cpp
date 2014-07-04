@@ -12,7 +12,6 @@ UI3DGrid::UI3DGrid(){
     colorSampleImage.loadImage("GUI/defaultColorPalette.png");
     
     gridScale = 25.;
-	gridMajorScale = 10;
 	fogFalloffDistance =  2000.;
 	fogFalloffExpo = 2.;
 	fogFalloffScale = 1.2;
@@ -22,8 +21,6 @@ UI3DGrid::UI3DGrid(){
 	majorGridLineWidth = 1.5;
 	gridColor.set(255);
 	gridMajorColor.set(255);
-	gridAlpha = gridMajorAlpha = .5;
-	gridBrightness = gridMajorBrightness = 1.;
     
     string vertexShader = STRINGIFY(varying vec3 ePos;
                                     varying float dist;
@@ -91,48 +88,37 @@ UI3DGrid::UI3DGrid(){
 }
 
 void UI3DGrid::setupUI(){
+
+    
+    gui->addSlider("gridScale", 1., 100., &gridScale);
 	gui->addSlider("gridLineWidth", 0.5, 10, &gridLineWidth);
-	gui->addSlider("majorGridLineWidth", 0.5, 10, &majorGridLineWidth);
-	gui->addSlider("gridScale", 1., 100., &gridScale);
-	gui->addSlider("gridMajorScale", 1, 25, &gridMajorScale );
-	
-	gui->addSpacer();
-	
-	gui->addImageSampler("gridColor", &colorSampleImage,
-                         (float)colorSampleImage.getWidth()/2,
-                         (float)colorSampleImage.getHeight()/2 );
-    
-	gui->addSlider("gridAlpha", 0, 255, &gridAlpha );
-	gui->addSlider("gridBrightness", 0, 1, &gridBrightness );
-	gui->addImageSampler("gridMajorColor", &colorSampleImage,
-                         (float)colorSampleImage.getWidth()/2,
-                         (float)colorSampleImage.getHeight()/2 );
-    
-	gui->addSlider("gridMajorAlpha", 0, 255, &gridMajorAlpha );
-	gui->addSlider("gridMajorBrightness", 0, 1, &gridMajorBrightness );
-	gui->addSlider("gridAlphaScale", .5, 2., &gridAlphaScale );
-    
+    gui->addSlider("gridAlpha", 0, 1, &gridColor.alpha );
     gui->addSpacer();
+    addUIColor("gridColor",gridColor);
+	   
+    gui->addSlider("gridMajorScale", 1, 25, &gridMajorScale );
+    gui->addSlider("majorGridLineWidth", 0.5, 10, &majorGridLineWidth);
+    gui->addSlider("gridMajorAlpha", 0, 1, &gridMajorColor.alpha );
+    gui->addSpacer();
+    addUIColor("gridMajorColor",gridMajorColor);
 	
+	
+    gui->addSlider("gridAlphaScale", .5, 2., &gridAlphaScale );
+    gui->addSpacer();
 	gui->addSlider("fogFalloffDistance", 100, 5000, &fogFalloffDistance );
 	gui->addSlider("fogFalloffExpo", .6, 10, &fogFalloffExpo );
 	gui->addSlider("fogFalloffScale", .5, 2., &fogFalloffScale );
 }
 
 void UI3DGrid::guiEvent(ofxUIEventArgs &e){
-    if( e.widget->getName() == "gridColor"){
-		ofxUIImageSampler* sampler = (ofxUIImageSampler *) e.widget;
-		gridColor = sampler->getColor();
-	}
-	
-	else if( e.widget->getName() == "gridMajorColor"){
-		ofxUIImageSampler* sampler = (ofxUIImageSampler *) e.widget;
-		gridMajorColor = sampler->getColor();
-	}
+
 }
 
 void UI3DGrid::draw(){
     if(bEnable){
+        gridColor.update();
+        gridMajorColor.update();
+        
         ofPushStyle();
 		//	ofVec3f camPos;
 		//	camPos = cam->getPosition();
@@ -154,7 +140,7 @@ void UI3DGrid::draw(){
 		ofScale( gridScale * gms,gridScale * gms, gridScale * gms );
 		
 		glLineWidth( majorGridLineWidth );
-		ofSetColor( gridMajorColor.r*gridMajorBrightness, gridMajorColor.g*gridMajorBrightness, gridMajorColor.b*gridMajorBrightness, gridMajorAlpha );
+		ofSetColor( gridMajorColor );
 		grid.draw(GL_LINES, 0, numGridVertices );
 		
 		ofPopMatrix();
@@ -164,7 +150,7 @@ void UI3DGrid::draw(){
 		ofScale( gridScale, gridScale, gridScale );
 		
 		glLineWidth( gridLineWidth );
-		ofSetColor( gridColor.r*gridBrightness, gridColor.g*gridBrightness, gridColor.b*gridBrightness, gridAlpha );
+		ofSetColor( gridColor);
 		grid.draw(GL_LINES, 0, numGridVertices );
 		
 		ofPopMatrix();

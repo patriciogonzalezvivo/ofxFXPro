@@ -28,24 +28,13 @@ protected:
 
     ofShader shader;
     
-    ofColor gridColor;
-    ofColor gridMajorColor;
+    aColor  gridColor;
+    aColor  gridMajorColor;
     
-    float   gridLineWidth;
-    float   gridScale;
-    float   majorGridLineWidth;
     float   gridDim;
-    float   fogFalloffDistance;
-    float   fogFalloffExpo;
-    float   fogFalloffScale;
-    float   gridAlphaScale;
-    float   gridMajorScale;
+    float   gridLineWidth, majorGridLineWidth;
+    float   fogFalloffDistance, fogFalloffExpo, fogFalloffScale;
+    float   gridScale, gridMajorScale, gridAlphaScale;
     
-    float   gridAlpha;
-    float   gridMajorAlpha;
-    float   gridBrightness;
-    float   gridMajorBrightness;
-    
-	int     numGridVertices;
-    int     numGridMajorVertices;
+	int     numGridVertices, numGridMajorVertices;
 };

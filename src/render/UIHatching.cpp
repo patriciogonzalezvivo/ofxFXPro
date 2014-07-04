@@ -241,7 +241,7 @@ string UIHatching::getClassName(){
 
 void UIHatching::setupUI(){
     
-    addUIColor("InkColor",inkColor);
+    //addUIColor("InkColor",inkColor);
     
     UIShader::setupUI();
 }

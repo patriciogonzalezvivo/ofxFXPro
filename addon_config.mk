@@ -1,15 +1,16 @@
 meta:
-	ADDON_NAME = ofxPro
-	ADDON_DESCRIPTION = Prototyping Enviroment
+	ADDON_NAME = ofxFXPro
+	ADDON_DESCRIPTION = FX's tool box for ofxPro 
 	ADDON_AUTHOR = Patricio Gonzalez Vivo
-	ADDON_TAGS = UI shaders interactive record document save load 
-	ADDON_URL = http://github.com/patriciogonzalezvivo/ofxPro
+	ADDON_TAGS = UI shaders
+	ADDON_URL = http://github.com/patriciogonzalezvivo/ofxFXPro
 
 common:
 	# dependencies with other addons, a list of them separated by spaces 
 	# or use += in several lines
 	ADDON_DEPENDENCIES = ofxXmlSettings
 	ADDON_DEPENDENCIES += ofxUI
+	ADDON_DEPENDENCIES += ofxPro
 	
 	# include search paths, this will be usually parsed from the file system
 	# but if the addon or addon libraries need special search paths they can be

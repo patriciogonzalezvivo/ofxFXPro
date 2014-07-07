@@ -29,6 +29,4 @@ protected:
     
     ofxUIRadio  *cubes;
     ofTexture   cube;
-    
-    string  vertexShader, fragmentShader;
 };

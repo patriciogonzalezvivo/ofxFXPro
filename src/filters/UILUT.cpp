@@ -182,6 +182,7 @@ void UILUT::setupUI(){
             cubes = gui->addRadio("LUTs", cubeList);
         }
     }
+    UIShader::setupUI();
 }
 
 void UILUT::begin(){

@@ -55,7 +55,7 @@ UI3DGrid::UI3DGrid(){
                                   
                                   void main(void){
                                       float alpha = pow((1. - linearizeDepth( gl_FragCoord.z )) * falloffScl, falloffExpo);
-                                      gl_FragColor = vec4( gl_Color.xyz, gl_Color.w * alpha * alphaScale);
+                                      gl_FragColor = vec4( gl_Color.xyz, gl_Color.w * alpha);// * alphaScale);
                                   });
     
     shader.setupShaderFromSource(GL_VERTEX_SHADER, vertexShader);
@@ -140,7 +140,7 @@ void UI3DGrid::draw(){
 		ofScale( gridScale * gms,gridScale * gms, gridScale * gms );
 		
 		glLineWidth( majorGridLineWidth );
-		ofSetColor( gridMajorColor );
+		ofSetColor( ofFloatColor(gridMajorColor, gridMajorColor.alpha) );
 		grid.draw(GL_LINES, 0, numGridVertices );
 		
 		ofPopMatrix();
@@ -150,7 +150,7 @@ void UI3DGrid::draw(){
 		ofScale( gridScale, gridScale, gridScale );
 		
 		glLineWidth( gridLineWidth );
-		ofSetColor( gridColor);
+		ofSetColor( ofFloatColor(gridColor, gridColor.alpha) );
 		grid.draw(GL_LINES, 0, numGridVertices );
 		
 		ofPopMatrix();

@@ -13,7 +13,7 @@ UIDoF::UIDoF(){
     fragmentShader = "#version 120\n\n\
 \n\
 uniform sampler2DRect tex;\n\
-uniform sampler2DRect range;\n\
+uniform sampler2DRect depthTexture;\n\
 uniform float _radius;\n\
 uniform float _focalDistance;\n\
 uniform float _focalRange;\n\
@@ -26,7 +26,7 @@ float LinearizeDepth(float zoverw){\n\
 }\n\
 \n\
 float FocalValue(vec2 pos){\n\
-    float depth = LinearizeDepth( texture2DRect(range, pos).r ) * 20000.;\n\
+    float depth = LinearizeDepth( texture2DRect(depthTexture, pos).r ) * 20000.;\n\
     float value = abs(depth  - _focalDistance) / _focalRange;\n\
     return min( value , 1.0);\n\
 }\n\
@@ -74,6 +74,14 @@ void UIDoF::setupUI(){
     UIShader::setupUI();
 }
 
+void UIDoF::begin(){
+    UIShader::begin();
+    setUniform1f("_radius", radius);
+	setUniform1f("_focalDistance", focalDistance);
+	setUniform1f("_focalRange", focalRange);
+    setUniform1i("_debug", bDebug);
+}
+
 void UIDoF::operator <<(ofFbo &_target){
     if (!pingpong.isAllocated() ||
         pingpong.getWidth() != _target.getWidth() ||
@@ -85,20 +93,18 @@ void UIDoF::operator <<(ofFbo &_target){
 	ofClear(0,0);
 	ofPushStyle();
 	ofSetColor(255);
-	begin();
-    setUniform1f("_radius", radius);
-	setUniform1f("_focalDistance", focalDistance);
-	setUniform1f("_focalRange", focalRange);
-    setUniform1i("_debug", bDebug);
-	//setUniformTexture("tex", _target.getTextureReference(), 0);
-	setUniformTexture("range", _target.getDepthTexture(), 1);
+	
+    begin();
     
+	//setUniformTexture("tex", _target.getTextureReference(), 0);
+	setUniformTexture("depthTexture", _target.getDepthTexture(), 1);
 	_target.draw(0,0);
 	end();
     ofPopStyle();
     pingpong.src->end();
 	
     pingpong.src->draw(0,0);
-
 }
+
+
 

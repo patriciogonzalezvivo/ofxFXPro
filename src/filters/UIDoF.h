@@ -22,6 +22,8 @@ public:
     
     void operator <<(ofFbo &_target);
     
+    void    begin();
+    
     bool    bDebug;
     
 protected:

@@ -25,13 +25,7 @@ public:
     bool    bDebug;
     
 protected:
-    void    guiEvent(ofxUIEventArgs &e);
-    
-    void  setAssistShader(bool _on);
-    
     PingPong    pingpong;
-    
-    string tmpShader;
     
     float radius;
 	float focalRange;

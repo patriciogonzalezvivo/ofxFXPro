@@ -13,7 +13,7 @@
 <Widget>
     <Kind>20</Kind>
     <Name>materials/01.jpg</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -223,7 +223,7 @@
 <Widget>
     <Kind>20</Kind>
     <Name>materials/greencarpaint_alpha.jpg</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -298,7 +298,7 @@
 <Widget>
     <Kind>20</Kind>
     <Name>normals/242-normal.jpg</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -338,7 +338,7 @@
 <Widget>
     <Kind>20</Kind>
     <Name>normals/99232450425c8132b17dbccf65da365a.jpg</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -418,25 +418,25 @@
 <Widget>
     <Kind>4</Kind>
     <Name>normalScale</Name>
-    <Value>0.413793117</Value>
+    <Value>0.054187194</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>normalRepeat</Name>
-    <Value>0.128078818</Value>
+    <Value>0.009852217</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>useRim</Name>
-    <Value>0.315270931</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>transparency</Name>
-    <Value>0.714285731</Value>
+    <Value>0.453201979</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>chroma</Name>
-    <Value>0.152709365</Value>
+    <Value>0.044334974</Value>
 </Widget>

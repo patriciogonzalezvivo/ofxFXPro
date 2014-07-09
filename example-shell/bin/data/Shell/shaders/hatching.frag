@@ -183,7 +183,7 @@ void main() {
     float depth = clamp(pow( length( pos ) / (10.0+dephtScale*1000.), dephtExp*10. ),0., 1. );
     vec4 color = vec4(0.);
 
-    // if(!gl_FrontFacing)
+    // if(!gl_FrontFacing)1
     {
         color = calc_lighting_shade(vPosition,vNormal);
 
@@ -203,6 +203,6 @@ void main() {
     // if(gl_FrontFacing)
         // gl_FragColor = vec4(0.);
     // else
-        // gl_FragColor = color;
-        gl_FragColor = vec4(vec3(1.0-color.a),1.0);
+        gl_FragColor = color;
+    // gl_FragColor = vec4(vec3(1.0-color.a),1.0);
 }

@@ -40,8 +40,9 @@ void UIAudioIn::setup(int _sampleRate, int _bufferSize){
 }
 
 UIAudioIn::~UIAudioIn(){
-    delete []audioIn;
+    stop();
     
+    delete []audioIn;
     delete []magnitude;
     delete []phase;
     delete []power;

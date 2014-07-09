@@ -28,7 +28,7 @@
 <Widget>
     <Kind>25</Kind>
     <Name>gHUE</Name>
-    <Value>0.000000000</Value>
+    <Value>nan</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
@@ -38,7 +38,7 @@
 <Widget>
     <Kind>25</Kind>
     <Name>gBRI</Name>
-    <Value>0.000000000</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

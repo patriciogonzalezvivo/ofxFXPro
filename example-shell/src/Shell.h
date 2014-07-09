@@ -17,7 +17,9 @@
 #include "UIHatchMap.h"
 
 #include "UIShell.h"
-#include "UIAudioIn.h"
+
+#include "UIDoF.h"
+//#include "UIAudioIn.h"
 
 class Shell : public ofx3DPro {
 public:
@@ -29,6 +31,7 @@ public:
     void selfSetup();
     void selfUpdate();
     void selfDraw();
+    void selfPostDraw();
 
     void selfKeyPressed(ofKeyEventArgs & args);
     void selfKeyReleased(ofKeyEventArgs & args);
@@ -46,5 +49,7 @@ protected:
     UIHatchMap  hatching;
     
     UIShell     shell;
-    UIAudioIn   audioIn;
+    //UIAudioIn   audioIn;
+    
+    UIDoF       dof;
 };

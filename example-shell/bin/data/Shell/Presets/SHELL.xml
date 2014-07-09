@@ -11,17 +11,32 @@
     <Value>1</Value>
 </Widget>
 <Widget>
-    <Kind>4</Kind>
-    <Name>Radio</Name>
-    <Value>1.970443368</Value>
+    <Kind>42</Kind>
+    <Name>Buffer</Name>
+    <Value>146</Value>
+</Widget>
+<Widget>
+    <Kind>42</Kind>
+    <Name>Resolution</Name>
+    <Value>38</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>Rotation</Name>
-    <Value>11.241379738</Value>
+    <Name>Angle_A</Name>
+    <Value>5.107022762</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>Translation</Name>
-    <Value>0.650246322</Value>
+    <Name>Angle_B</Name>
+    <Value>-0.649984658</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>TransX</Name>
+    <Value>-1.270936012</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>TransY</Name>
+    <Value>0.857142925</Value>
 </Widget>

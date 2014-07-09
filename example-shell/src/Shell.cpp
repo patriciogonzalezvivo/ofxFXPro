@@ -14,6 +14,7 @@ void Shell::selfSetup(){
 
     hatching.load(getDataPath()+"shaders/hatching");
     matcap.load(getDataPath()+"shaders/matcap");
+    bumpmap.load(getDataPath()+"shaders/bumpmap");
 }
 
 void Shell::selfSetupGuis(){
@@ -28,15 +29,23 @@ void Shell::selfSetupGuis(){
     
     guiAdd(grid);
     
-    guiAdd(audioIn);
+    guiAdd(dof);
+    
+    //guiAdd(audioIn);
 }
 
 void Shell::selfUpdate(){
     
-    if(ofGetFrameNum()%24&&audioIn.bEnable){
-        shell.feed( audioIn.average );
-    }
+//    if(ofGetFrameNum()%24&&audioIn.bEnable){
+//        shell.feed( audioIn.average );
+//    }
     
+    vector<float> values;
+    for (int i = 0; i < 50; i++) {
+        values.push_back(ofNoise(ofGetElapsedTimef()*0.1,i*0.1)*10.0);
+    }
+    shell.feed(values);
+
     shell.update();
 }
 
@@ -64,6 +73,14 @@ void Shell::selfDraw(){
     matcap.end();
     
     materials["MATERIAL 1"]->end();
+}
+
+void Shell::selfPostDraw(){
+    
+    dof.begin();
+    dof.setUniformTexture("depthTexture", getRenderTarget().getDepthTexture(), 1);
+    getRenderTarget().draw(0,0);
+    dof.end();
 }
 
 void Shell::selfKeyPressed(ofKeyEventArgs & args){

@@ -21,21 +21,16 @@ public:
     void        update();
     void        draw();
     
-    float       buffer;
-    float       noise;
-    float       radio;
+    int         buffer;
+    int         resolution;
+    
+    float       angleA,angleB;
     ofPoint     translation;
-    float       rotation;
     
 private:
-    
     void        setupUI();
-    void        guiEvent(ofxUIEventArgs &e);
     
     ofPolyline  freqArc( vector<float> &_vector, const ofPoint &_center, float _angleBegin, float _angleEnd, float _minRad , bool _bSmooth = false);
-    
-    void        addFace(ofMesh& mesh, ofVec3f a, ofVec3f b, ofVec3f c);
-    void        addFace(ofMesh& mesh, ofVec3f a, ofVec3f b, ofVec3f c, ofVec3f d);
 
     vector< vector<float> > averages;
     vector< ofPoint >       points;

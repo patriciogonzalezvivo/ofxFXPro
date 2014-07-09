@@ -23,32 +23,32 @@
 <Widget>
     <Kind>25</Kind>
     <Name>POSX</Name>
-    <Value>15.028460503</Value>
+    <Value>-36.244155884</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>POSY</Name>
-    <Value>126.370796204</Value>
+    <Value>119.945053101</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>POSZ</Name>
-    <Value>-87.526969910</Value>
+    <Value>39.151309967</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>ORIX</Name>
-    <Value>-117.801048279</Value>
+    <Value>-66.910995483</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>ORIY</Name>
-    <Value>14.136357307</Value>
+    <Value>-19.790689468</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>ORIZ</Name>
-    <Value>-23.560438156</Value>
+    <Value>10.366266251</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
@@ -73,12 +73,12 @@
 <Widget>
     <Kind>25</Kind>
     <Name>dSAT</Name>
-    <Value>0.000000000</Value>
+    <Value>0.157068059</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>dBRI</Name>
-    <Value>0.738219917</Value>
+    <Value>0.790575922</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
@@ -93,5 +93,5 @@
 <Widget>
     <Kind>25</Kind>
     <Name>sBRI</Name>
-    <Value>0.026178010</Value>
+    <Value>0.078534029</Value>
 </Widget>

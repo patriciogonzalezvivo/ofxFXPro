@@ -16,9 +16,12 @@ UIShell::UIShell(){
 }
 
 void UIShell::setupUI(){
-    gui->addSlider("Buffer", 10, 1000, &buffer);
-    gui->addSlider("Radio", 0.0, 100, &radio);
-    gui->addSlider("Rotation", 1.0, 100.0, &rotation);
+    gui->addIntSlider("Buffer", 10, 1000, &buffer);
+    gui->addIntSlider("Resolution", 3, 100, &resolution);
+    
+    gui->addSlider("Angle_A", -TWO_PI, TWO_PI, &angleA);
+    gui->addSlider("Angle_B", -TWO_PI, TWO_PI, &angleB);
+    
     gui->addSlider("TransX", -2.0, 2.0, &translation.x);
     gui->addSlider("TransY", -2.0, 2.0, &translation.y);
 }
@@ -35,37 +38,40 @@ void UIShell::feed(vector<float> &_newAverage){
 
 void UIShell::update(){
     if(bEnable){
-        //  Shell
-        //
-        float phi   = (1.0+sqrtf(5.0))/2.0;
-        float grow  = (1.0+phi);
-        float stepGrow = grow*(rotation/buffer)*0.1;
         
-        float _radio = radio;
+        float PHI = (1.0+sqrtf(5.0))/2.0;
+        
+        float sides = resolution;
+        float step = buffer/sides;
+        float rotation = 360/sides;
+        float growStep = PHI/sides;
+        
+        ofPoint grow = ofPoint(0.1,0.1);
+
         offSet = ofPoint(0,0);
         
-        int lineWidth;
+        int width;
         points.clear();
         
+        //  Add new Values to the point structure
+        //
         ofMatrix4x4 matrix;
         for (int i = 0; i < averages.size(); i++){
-            _radio += _radio*stepGrow;
-            float size = _radio*grow;
-            offSet = translation*size;// ofPoint(size*translation,size);//*-translation);
+            grow += (grow*(PHI/sides));
+            offSet = translation*grow;
             
-            ofPolyline line = freqArc( averages[i], offSet, PI-0.65, 0.0f+0.65, size );
-            lineWidth = line.size();
+            ofPolyline line = freqArc( averages[i], offSet, angleA, angleB, grow.x );
+            width = line.size();
             
             matrix.rotate( rotation , 1.0 , 0.0, 0.0);
-            for (int j = 0; j < lineWidth; j++){
+            for (int j = 0; j < width; j++){
                 points.push_back( matrix*line[j] );
             }
         }
         
-        //  Create Skin
+        //  Create Skin based on points
         //
-        if (points.size()>=lineWidth && lineWidth > 0){
-            int width = lineWidth;
+        if (points.size()>=width && width > 0){
             int height = points.size() / width;
             
             mesh.clear();
@@ -126,18 +132,13 @@ void UIShell::draw(){
     }
 }
 
-
-void UIShell::guiEvent(ofxUIEventArgs &e){
-    
-}
-
 //------------------------------------------------ HELPERS
 ofPolyline UIShell::freqArc( vector<float> &_vector, const ofPoint &_center, float _angleBegin, float _angleEnd, float _minRad,  bool _bSmooth){
     
     ofPolyline line;
     
-    float angle = ofWrapRadians(_angleBegin);
-    float step = (ofWrapRadians(_angleEnd) - angle)/((float)_vector.size());
+    float angle = _angleBegin;//ofWrapRadians(_angleBegin);
+    float step = (_angleEnd - angle)/((float)_vector.size());//(ofWrapRadians(_angleEnd) - angle)/((float)_vector.size());
     float scale = 1.0f;
     
     ofPoint start = ofPoint(_center.x + _minRad * cos(angle),
@@ -163,22 +164,4 @@ ofPolyline UIShell::freqArc( vector<float> &_vector, const ofPoint &_center, flo
     line.addVertex( end );
     
     return line;
-}
-
-void UIShell::addFace(ofMesh& mesh, ofVec3f a, ofVec3f b, ofVec3f c) {
-	ofVec3f normal = ((b - a).cross(c - a)).normalize();
-	mesh.addNormal(normal);
-	mesh.addVertex(a);
-	
-    mesh.addNormal(normal);
-	mesh.addVertex(b);
-    
-	mesh.addNormal(normal);
-	mesh.addVertex(c);
-}
-
-void UIShell::addFace(ofMesh& mesh, ofVec3f a, ofVec3f b, ofVec3f c, ofVec3f d) {
-	addFace(mesh, a, b, c);
-    
-	addFace(mesh, a, c, d);
 }

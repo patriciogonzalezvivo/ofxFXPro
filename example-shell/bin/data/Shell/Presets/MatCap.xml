@@ -23,7 +23,7 @@
 <Widget>
     <Kind>20</Kind>
     <Name>materials/03.jpg</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -176,6 +176,111 @@
     <Value>0</Value>
 </Widget>
 <Widget>
+    <Kind>20</Kind>
+    <Name>materials/755_large.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/93e1bbcf77ece0c0f7fc79ecb8ff0d00.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/_00_material3.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/_01_egg.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/BazC_SkinMat.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/Bronze.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/Copper.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/droplet_01.png</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/Gloss_Black.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/greencarpaint_alpha.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/Jade_Light.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/JG_Drink01.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/MatcapBronze.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/MatcapQuartz.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/mydarkgreymetal_zbrush_matcap_by_digitalinkrod.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/mygreenmetal_zbrush_matcap_by_digitalinkrod.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/myredmetal_zbrush_matcap_by_digitalinkrod.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/Shiny_Fire_1c.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/skin1.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/skin2.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>materials/thuglee-chrome-02b.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
     <Kind>2</Kind>
     <Name>&apos;</Name>
     <Value>1</Value>
@@ -233,7 +338,7 @@
 <Widget>
     <Kind>20</Kind>
     <Name>normals/99232450425c8132b17dbccf65da365a.jpg</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -268,7 +373,7 @@
 <Widget>
     <Kind>20</Kind>
     <Name>normals/normal.jpg</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -313,25 +418,25 @@
 <Widget>
     <Kind>4</Kind>
     <Name>normalScale</Name>
-    <Value>0.413793117</Value>
+    <Value>0.487684727</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>normalRepeat</Name>
-    <Value>0.128078818</Value>
+    <Value>0.059113301</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>useRim</Name>
-    <Value>0.315270931</Value>
+    <Value>0.275862068</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>transparency</Name>
-    <Value>0.714285731</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>chroma</Name>
-    <Value>0.152709365</Value>
+    <Value>0.137931034</Value>
 </Widget>

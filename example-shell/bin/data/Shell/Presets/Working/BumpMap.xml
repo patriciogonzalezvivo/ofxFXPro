@@ -48,12 +48,12 @@
 <Widget>
     <Kind>20</Kind>
     <Name>normals/6624-normal.jpg</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
     <Name>normals/7146-normal.jpg</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -143,12 +143,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>normalRepeat</Name>
-    <Value>0.019704433</Value>
+    <Value>0.349753708</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>normalScale</Name>
-    <Value>0.463054180</Value>
+    <Value>0.399014771</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -158,5 +158,5 @@
 <Widget>
     <Kind>4</Kind>
     <Name>transparency</Name>
-    <Value>0.384236455</Value>
+    <Value>0.320197046</Value>
 </Widget>

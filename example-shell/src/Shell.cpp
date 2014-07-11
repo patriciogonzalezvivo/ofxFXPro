@@ -15,6 +15,8 @@ void Shell::selfSetup(){
     hatching.load(getDataPath()+"shaders/hatching");
     matcap.load(getDataPath()+"shaders/matcap");
     bumpmap.load(getDataPath()+"shaders/bumpmap");
+    
+    edge.load(getDataPath()+"shaders/edge");
 }
 
 void Shell::selfSetupGuis(){
@@ -27,11 +29,14 @@ void Shell::selfSetupGuis(){
     guiAdd(bumpmap);
     guiAdd(hatching);
     
-    guiAdd(grid);
-    
     guiAdd(dof);
+    guiAdd(edge);
     
     //guiAdd(audioIn);
+}
+
+void Shell::selfSetupSystemGui(){
+    
 }
 
 void Shell::selfUpdate(){
@@ -50,15 +55,6 @@ void Shell::selfUpdate(){
 }
 
 void Shell::selfDraw(){
-    
-    
-    ofPushMatrix();
-    ofPushStyle();
-    ofRotateX(90);
-    grid.draw();
-    ofPopStyle();
-    ofPopMatrix();
-    
     ofSetColor(255);
     materials["MATERIAL 1"]->begin();
     
@@ -77,10 +73,16 @@ void Shell::selfDraw(){
 
 void Shell::selfPostDraw(){
     
-    dof.begin();
-    dof.setUniformTexture("depthTexture", getRenderTarget().getDepthTexture(), 1);
-    getRenderTarget().draw(0,0);
-    dof.end();
+//    dof.begin();
+//    dof.setUniformTexture("depthTexture", getRenderTarget().getDepthTexture(), 1);
+//    getRenderTarget().draw(0,0);
+//    dof.end();
+    
+    edge.begin();
+    edge.setUniformTexture("depthTexture", getRenderTarget().getDepthTexture(), 1);
+    getRenderTarget(0).draw(0,0);
+    edge.end();
+
 }
 
 void Shell::selfKeyPressed(ofKeyEventArgs & args){

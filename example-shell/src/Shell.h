@@ -19,7 +19,10 @@
 #include "UIShell.h"
 
 #include "UIDoF.h"
+#include "UIEdge.h"
 //#include "UIAudioIn.h"
+
+#include "ofxBlur.h"
 
 class Shell : public ofx3DPro {
 public:
@@ -27,6 +30,8 @@ public:
     string getSystemName(){return "Shell";}
 
     void selfSetupGuis();
+    
+    void selfSetupSystemGui();
 
     void selfSetup();
     void selfUpdate();
@@ -42,8 +47,6 @@ public:
     void selfMouseReleased(ofMouseEventArgs& data);
     
 protected:
-    UI3DGrid    grid;
-    
     UIMatCap    matcap;
     UIBumpMap   bumpmap;
     UIHatchMap  hatching;
@@ -52,4 +55,5 @@ protected:
     //UIAudioIn   audioIn;
     
     UIDoF       dof;
+    UIEdge      edge;
 };

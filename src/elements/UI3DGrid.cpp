@@ -92,15 +92,15 @@ void UI3DGrid::setupUI(){
     
     gui->addSlider("gridScale", 1., 100., &gridScale);
 	gui->addSlider("gridLineWidth", 0.5, 10, &gridLineWidth);
-    gui->addSlider("gridAlpha", 0, 1, &gridColor.alpha );
+//    gui->addSlider("gridAlpha", 0, 1, &gridColor.alpha );
     gui->addSpacer();
-    addUIColor("gridColor",gridColor);
+    addUIColor("gridColor",&gridColor);
 	   
     gui->addSlider("gridMajorScale", 1, 25, &gridMajorScale );
     gui->addSlider("majorGridLineWidth", 0.5, 10, &majorGridLineWidth);
-    gui->addSlider("gridMajorAlpha", 0, 1, &gridMajorColor.alpha );
+//    gui->addSlider("gridMajorAlpha", 0, 1, &gridMajorColor.alpha );
     gui->addSpacer();
-    addUIColor("gridMajorColor",gridMajorColor);
+    addUIColor("gridMajorColor",&gridMajorColor);
 	
 	
     gui->addSlider("gridAlphaScale", .5, 2., &gridAlphaScale );
@@ -140,7 +140,7 @@ void UI3DGrid::draw(){
 		ofScale( gridScale * gms,gridScale * gms, gridScale * gms );
 		
 		glLineWidth( majorGridLineWidth );
-		ofSetColor( ofFloatColor(gridMajorColor, gridMajorColor.alpha) );
+		ofSetColor( ofFloatColor(gridMajorColor) );
 		grid.draw(GL_LINES, 0, numGridVertices );
 		
 		ofPopMatrix();
@@ -150,7 +150,7 @@ void UI3DGrid::draw(){
 		ofScale( gridScale, gridScale, gridScale );
 		
 		glLineWidth( gridLineWidth );
-		ofSetColor( ofFloatColor(gridColor, gridColor.alpha) );
+		ofSetColor( ofFloatColor(gridColor) );
 		grid.draw(GL_LINES, 0, numGridVertices );
 		
 		ofPopMatrix();

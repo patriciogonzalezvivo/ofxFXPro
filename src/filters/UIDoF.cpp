@@ -82,29 +82,4 @@ void UIDoF::begin(){
     setUniform1i("_debug", bDebug);
 }
 
-void UIDoF::operator <<(ofFbo &_target){
-    if (!pingpong.isAllocated() ||
-        pingpong.getWidth() != _target.getWidth() ||
-        pingpong.getHeight() != _target.getHeight()){
-        pingpong.allocate(_target.getWidth(), _target.getHeight());
-    }
-    
-    pingpong.src->begin();
-	ofClear(0,0);
-	ofPushStyle();
-	ofSetColor(255);
-	
-    begin();
-    
-	//setUniformTexture("tex", _target.getTextureReference(), 0);
-	setUniformTexture("depthTexture", _target.getDepthTexture(), 1);
-	_target.draw(0,0);
-	end();
-    ofPopStyle();
-    pingpong.src->end();
-	
-    pingpong.src->draw(0,0);
-}
-
-
 

@@ -4,7 +4,7 @@
 void ofApp::setup(){
     ofSetVerticalSync(true);
 	
-	project = new Shell();
+	project = new Flair();
     project->setup();
     project->play();
     
@@ -30,7 +30,14 @@ void ofApp::keyPressed(int key){
         project = new Shell();
         project->setup();
         project->play();
-    } 
+    } else if( key == OF_KEY_F2){
+        project->stop();
+        project = NULL;
+        
+        project = new Flair();
+        project->setup();
+        project->play();
+    }
 }
 
 //--------------------------------------------------------------

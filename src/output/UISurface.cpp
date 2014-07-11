@@ -33,7 +33,7 @@ UISurface::~UISurface(){
 
 void UISurface::setupUI( ){
     for (int i = 0; i < 4; i++){
-        addUIPos("C"+ofToString(i),textureCorners[i],true);
+        addUIPos("C"+ofToString(i),&textureCorners[i],true);
     }
     bool bFalse = false;
     gui->addButton("RESTORE", bFalse);

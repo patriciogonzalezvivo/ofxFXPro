@@ -4,6 +4,7 @@
 #include "ofxPro.h"
 
 #include "Shell.h"
+#include "Flair.h"
 
 class ofApp : public ofBaseApp{
 public:

@@ -20,14 +20,11 @@ public:
     
     string  getClassName(){return "DoF";}
     
-    void operator <<(ofFbo &_target);
-    
     void    begin();
     
     bool    bDebug;
     
 protected:
-    PingPong    pingpong;
     
     float radius;
 	float focalRange;

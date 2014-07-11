@@ -19,8 +19,13 @@ void UIShell::setupUI(){
     gui->addIntSlider("Buffer", 10, 1000, &buffer);
     gui->addIntSlider("Resolution", 3, 100, &resolution);
     
-    gui->addSlider("Angle_A", -TWO_PI, TWO_PI, &angleA);
-    gui->addSlider("Angle_B", -TWO_PI, TWO_PI, &angleB);
+    gui->setGlobalCanvasWidth(gui->getGlobalCanvasWidth()*0.5);
+    gui->addRotarySlider("Angle_A", 0, TWO_PI, &angleA);
+    gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+    gui->addRotarySlider("Angle_B", 0, TWO_PI, &angleB);
+    gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
+    gui->setGlobalCanvasWidth(gui->getGlobalCanvasWidth()*2.0);
+    
     
     gui->addSlider("TransX", -2.0, 2.0, &translation.x);
     gui->addSlider("TransY", -2.0, 2.0, &translation.y);
@@ -60,7 +65,7 @@ void UIShell::update(){
             grow += (grow*(PHI/sides));
             offSet = translation*grow;
             
-            ofPolyline line = freqArc( averages[i], offSet, angleA, angleB, grow.x );
+            ofPolyline line = freqArc( averages[i], offSet, angleA,angleA+angleB, grow.x );
             width = line.size();
             
             matrix.rotate( rotation , 1.0 , 0.0, 0.0);
@@ -126,8 +131,7 @@ void UIShell::draw(){
         ofPushMatrix();
         ofTranslate(0,offSet.x*0.7);
         ofRotate(-90, 0, 0, 1);
-        ofSetColor(255,250,240);
-        mesh.drawFaces();
+        mesh.draw();
         ofPopMatrix();
     }
 }

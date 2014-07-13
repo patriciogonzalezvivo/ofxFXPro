@@ -204,6 +204,26 @@ void UIText::setFontsDir( string _dir ){
 void UIText::draw(){
     if (bEnable){
         
+        if(bUpdate){
+            ofPoint center = getCenter();
+            setFromCenter(center, width, height);
+            
+            if ( shape != NULL ){
+                delete shape;
+            }
+
+            shape = new TextBlock();
+            ((TextBlock*)(shape))->setWrapping(false);
+            shape->set(*this);
+            shape->loadFont( fontDir+"/"+fontName, fontSize );
+            shape->setScale( fontScale );
+            shape->setAlignment( textAlignH , textAlignV );
+            shape->setText(text);
+            
+            ofxUIWidget *angWidget =  gui->getWidget("arc_angle");
+            angWidget->setVisible(false);
+        }
+        
         if(bEdit){
             UIRectangle::draw();
         }

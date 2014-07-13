@@ -66,7 +66,6 @@ void TextBlock::draw(float _x, float _y, float _w, float _h){
 
 void TextBlock::draw(){
     float yAlig = y;
-    
     if (vAlignment == TEXT_ALIGN_BOTTOM){
         yAlig = y + height - getTextHeight();
     } else if (vAlignment == TEXT_ALIGN_MIDDLE){
@@ -87,10 +86,11 @@ void TextBlock::draw(){
                     
                     currentWordID = lines[l].wordsID[w];
                     
-                    drawX = x + currX;
-                    drawY = yAlig - (font.getLineHeight() * (l + 1));
+                    drawX = currX;
+                    drawY = (font.getLineHeight() * (l + 1));
                     
                     ofPushMatrix();
+                    ofTranslate(x, yAlig, 0.0f);
                     ofScale(scale, scale, scale);
                     font.drawString(words[currentWordID].rawWord.c_str(), drawX, drawY);
                     currX += words[currentWordID].width;
@@ -206,7 +206,7 @@ void TextBlock::draw(){
                     currentWordID = lines[l].wordsID[w];
                     
                     drawX = -(lineWidth / 2) + currX;
-                    drawY = font.getLineHeight() * ((lines.size()-1)-l);//(l + 1);
+                    drawY = font.getLineHeight() * ((lines.size())-l);//(l + 1);
                     
                     ofPushMatrix();
                     //Move to central point using pre-scaled co-ordinates

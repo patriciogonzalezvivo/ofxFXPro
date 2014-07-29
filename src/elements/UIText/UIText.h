@@ -24,11 +24,12 @@ public:
     string  getText();
     
     void    mouseDragged(ofPoint _mouse);
-    
+
     void    draw();
     
 protected:
     virtual void setupUI();
+    virtual void reload();
     virtual void guiEvent(ofxUIEventArgs &e);
     
     string  fontDir;

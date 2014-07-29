@@ -92,15 +92,15 @@ void UI3DGrid::setupUI(){
     
     gui->addSlider("gridScale", 1., 100., &gridScale);
 	gui->addSlider("gridLineWidth", 0.5, 10, &gridLineWidth);
-//    gui->addSlider("gridAlpha", 0, 1, &gridColor.alpha );
+    gui->addSlider("gridAlpha", 0, 1, &gridColor.alpha );
     gui->addSpacer();
     addUIColor("gridColor",&gridColor);
 	   
-    gui->addSlider("gridMajorScale", 1, 25, &gridMajorScale );
+    gui->addSlider("majorGridScale", 1, 25, &gridMajorScale );
     gui->addSlider("majorGridLineWidth", 0.5, 10, &majorGridLineWidth);
-//    gui->addSlider("gridMajorAlpha", 0, 1, &gridMajorColor.alpha );
+    gui->addSlider("majorGridAlpha", 0, 1, &gridMajorColor.alpha );
     gui->addSpacer();
-    addUIColor("gridMajorColor",&gridMajorColor);
+    addUIColor("MajorGridColor",&gridMajorColor);
 	
 	
     gui->addSlider("gridAlphaScale", .5, 2., &gridAlphaScale );

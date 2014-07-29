@@ -22,8 +22,6 @@
 #include "UIEdge.h"
 //#include "UIAudioIn.h"
 
-#include "ofxBlur.h"
-
 class Shell : public ofx3DPro {
 public:
 

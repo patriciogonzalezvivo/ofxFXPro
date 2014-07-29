@@ -16,12 +16,8 @@ UIText::UIText(){
 }
 
 void UIText::setupUI(){
-    
-//    gui->addTextInput("content", "_content_", OFX_UI_FONT_SMALL);
-//    gui->addSlider("width",10,ofGetWindowWidth(),&width);
-//    gui->addSlider("height", 10, ofGetWindowHeight(), &height);
-    
     UIRectangle::setupUI();
+//    gui->addTextInput("content", "_content_", OFX_UI_FONT_SMALL);
     
     gui->addSlider("font_size",4.0,80.0,&fontSize);
     gui->addSlider("font_scale",0.0,2.0,&fontScale);
@@ -73,64 +69,31 @@ string UIText::getText(){
 }
 
 void UIText::guiEvent(ofxUIEventArgs &e){
-    if (gui != NULL || shape != NULL){
+    if( shape == NULL){
+        reload();
+    }
+    
+    if (gui != NULL){
         string name = e.widget->getName();
         
-        if( name == "width" || name == "height" ){
-            ofPoint center = getCenter();
-            setFromCenter(center, width, height);
+        if( name == "TYPE" || name == "ARC" || name == "BLOCK" ){
+            ((ofxUIDropDownList*)gui->getWidget("FONTS"))->close();
+            ((ofxUIDropDownList*)gui->getWidget("VERTICAL_ALIGN"))->close();
+            ((ofxUIDropDownList*)gui->getWidget("HORIZONTAL_ALIGN"))->close();
             
-            if ( shape != NULL ){
-                delete shape;
+            vector<string> selected = ((ofxUIDropDownList*)gui->getWidget("TYPE"))->getSelectedNames();
+            for(int i = 0; i < selected.size(); i++ ){
+                if( name == selected[i]){
+                    if( name == "ARC"){
+                        shapeType = TEXT_SHAPE_ARC;
+                    } else if (name == "BLOCK"){
+                        shapeType = TEXT_SHAPE_BLOCK;
+                    }
+                    
+                    reload();
+                    break;
+                }
             }
-            
-            shape = new TextBlock();
-            ((TextBlock*)(shape))->setWrapping(false);
-            shape->set(*this);
-            shape->loadFont( fontDir+"/"+fontName, fontSize );
-            shape->setScale( fontScale );
-            shape->setAlignment( textAlignH , textAlignV );
-            shape->setText(text);
-            
-            ofxUIWidget *angWidget =  gui->getWidget("arc_angle");
-            angWidget->setVisible(false);
-        
-        } else if( name == "BLOCK" ){
-            shapeType = TEXT_SHAPE_BLOCK;
-            
-            if ( shape != NULL ){
-                delete shape;
-            }
-            
-            shape = new TextBlock();
-            ((TextBlock*)(shape))->setWrapping(false);
-            shape->set(*this);
-            shape->loadFont( fontDir+"/"+fontName, fontSize );
-            shape->setScale( fontScale );
-            shape->setAlignment( textAlignH , textAlignV );
-            shape->setText(text);
-            
-            ofxUIWidget *angWidget =  gui->getWidget("arc_angle");
-            angWidget->setVisible(false);
-            
-        } else if( name == "ARC"){
-            shapeType = TEXT_SHAPE_ARC;
-            
-            if ( shape != NULL ){
-                delete shape;
-            }
-            
-            shape = new TextArc();
-            shape->set(*this);
-            shape->loadFont( fontDir+"/"+fontName, fontSize );
-            shape->setScale( fontScale );
-            shape->setAlignment( textAlignH , textAlignV );
-            shape->setText(text);
-            ((TextArc*)(shape))->setRadius(arcAngle);
-            
-            ofxUIWidget *angWidget =  gui->getWidget("arc_angle");
-            angWidget->setVisible(true);
-            
         } else if( name == "font_size" || name == "font_scale"){
             shape->loadFont( fontDir+"/"+fontName, fontSize );
             shape->setScale( fontScale );
@@ -140,36 +103,61 @@ void UIText::guiEvent(ofxUIEventArgs &e){
             
             shape->setText(text);
             widget->setTextString(text);
-        } else if ( name == "LEFT" ){
-            textAlignH = TEXT_ALIGN_LEFT;
-            shape->setAlignment( textAlignH , textAlignV );
-        } else if ( name == "RIGHT" ){
-            textAlignH = TEXT_ALIGN_RIGHT;
-            shape->setAlignment( textAlignH , textAlignV );
-        } else if ( name == "JUSTIFIED" ){
-            textAlignH = TEXT_ALIGN_JUSTIFIED;
-            shape->setAlignment( textAlignH , textAlignV );
-        } else if ( name == "CENTER" ){
-            textAlignH = TEXT_ALIGN_CENTER;
-            shape->setAlignment( textAlignH , textAlignV );
-        } else if ( name == "TOP" ){
-            textAlignV = TEXT_ALIGN_TOP;
-            shape->setAlignment( textAlignH , textAlignV );
-        } else if ( name == "BOTTOM" ){
-            textAlignV = TEXT_ALIGN_BOTTOM;
-            shape->setAlignment( textAlignH , textAlignV );
-        } else if ( name == "MIDDLE" ){
-            textAlignV = TEXT_ALIGN_MIDDLE;
-            shape->setAlignment( textAlignH , textAlignV );
-        } else if ( name == "ENABLE" || name == "FONTS" || name == "VERTICAL_ALIGN" || name == "HORIZONTAL_ALIGN"){
+        } else if ( name == "HORIZONTAL_ALIGN" || name == "LEFT" || name == "RIGHT" || name == "JUSTIFIED" || name == "CENTER" ){
+            ((ofxUIDropDownList*)gui->getWidget("FONTS"))->close();
+            ((ofxUIDropDownList*)gui->getWidget("VERTICAL_ALIGN"))->close();
+            ((ofxUIDropDownList*)gui->getWidget("TYPE"))->close();
             
+            vector<string> selected = ((ofxUIDropDownList*)gui->getWidget("HORIZONTAL_ALIGN"))->getSelectedNames();
+           
+            for(int i = 0; i < selected.size(); i++ ){
+                if( name == selected[i]){
+                    if( name == "LEFT")
+                        textAlignH = TEXT_ALIGN_LEFT;
+                    else if (name == "RIGHT")
+                        textAlignH = TEXT_ALIGN_RIGHT;
+                    else if (name == "JUSTIFIED")
+                        textAlignH = TEXT_ALIGN_JUSTIFIED;
+                    else  if( name == "CENTER")
+                        textAlignH = TEXT_ALIGN_CENTER;
+                }
+            }
+
+            shape->setAlignment( textAlignH , textAlignV );
+        } else if ( name == "VERTICAL_ALIGN" || name == "TOP" || name == "BOTTOM" || name == "MIDDLE" ){
+            ((ofxUIDropDownList*)gui->getWidget("FONTS"))->close();
+            ((ofxUIDropDownList*)gui->getWidget("HORIZONTAL_ALIGN"))->close();
+            ((ofxUIDropDownList*)gui->getWidget("TYPE"))->close();
+            
+            vector<string> selected = ((ofxUIDropDownList*)gui->getWidget("VERTICAL_ALIGN"))->getSelectedNames();
+            
+            for(int i = 0; i < selected.size(); i++ ){
+                if( name == selected[i]){
+                    if (name == "TOP")
+                        textAlignV = TEXT_ALIGN_TOP;
+                    else if ( name == "BOTTOM" )
+                        textAlignV = TEXT_ALIGN_BOTTOM;
+                    else if ( name == "MIDDLE" )
+                        textAlignV = TEXT_ALIGN_MIDDLE;
+                }
+            }
+            
+            shape->setAlignment( textAlignH , textAlignV );
+        } else if ( name == "ENABLE" ){
+            if(bEnable){
+                reload();
+            }
         } else if ( name == "arc_angle"){
             if (shapeType == TEXT_SHAPE_ARC) {
                 ((TextArc*)(shape))->setAngle(arcAngle);
             }
         } else if ( name == "EDIT" ) {
             UIRectangle::guiEvent(e);
-        } else{
+        } else if ( name == "FONTS"){
+            ((ofxUIDropDownList*)gui->getWidget("VERTICAL_ALIGN"))->close();
+            ((ofxUIDropDownList*)gui->getWidget("HORIZONTAL_ALIGN"))->close();
+            ((ofxUIDropDownList*)gui->getWidget("TYPE"))->close();
+        } else {
             for(int i = 0; i < fonts.size(); i++ ){
                 if (name == fonts[i]){
                     fontName = name;
@@ -182,6 +170,34 @@ void UIText::guiEvent(ofxUIEventArgs &e){
     }
     bUpdate = true;
     gui->autoSizeToFitWidgets();
+}
+
+void UIText::reload(){
+    if ( shape != NULL )
+        delete shape;
+    
+    if(shapeType == TEXT_SHAPE_ARC){
+        shapeType = TEXT_SHAPE_ARC;
+        shape = new TextArc();
+    } else {
+        shapeType = TEXT_SHAPE_BLOCK;
+        shape = new TextBlock();
+        ((TextBlock*)(shape))->setWrapping(false);
+    }
+    
+    shape->set(*this);
+    shape->loadFont( fontDir+"/"+fontName, fontSize );
+    shape->setScale( fontScale );
+    shape->setAlignment( textAlignH , textAlignV );
+    shape->setText(text);
+    
+    if(shapeType == TEXT_SHAPE_ARC){
+        ((TextArc*)(shape))->setRadius(arcAngle);
+        ofxUIWidget *angWidget =  gui->getWidget("arc_angle");
+        angWidget->setVisible(true);
+    }
+    
+    gui->getWidget("arc_angle")->setVisible(shapeType == TEXT_SHAPE_ARC);
 }
 
 void UIText::setFontsDir( string _dir ){
@@ -205,23 +221,8 @@ void UIText::draw(){
     if (bEnable){
         
         if(bUpdate){
-            ofPoint center = getCenter();
-            setFromCenter(center, width, height);
-            
-            if ( shape != NULL ){
-                delete shape;
-            }
-
-            shape = new TextBlock();
-            ((TextBlock*)(shape))->setWrapping(false);
+            setFromCenter(getCenter(), width, height);
             shape->set(*this);
-            shape->loadFont( fontDir+"/"+fontName, fontSize );
-            shape->setScale( fontScale );
-            shape->setAlignment( textAlignH , textAlignV );
-            shape->setText(text);
-            
-            ofxUIWidget *angWidget =  gui->getWidget("arc_angle");
-            angWidget->setVisible(false);
         }
         
         if(bEdit){

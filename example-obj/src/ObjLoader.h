@@ -15,7 +15,7 @@
 
 #include "UIMatCap.h"
 #include "UIBumpMap.h"
-#include "UIHatching.h"
+#include "UIHatchMap.h"
 
 class ObjLoader : public ofx3DPro {
 public:
@@ -42,7 +42,7 @@ protected:
     
     UIMatCap    sphereMap;
     UIBumpMap   bumpMap;
-    UIHatching    hatchShader;
+    UIHatchMap  hatchShader;
     
     UI3DGrid    grid;
 };

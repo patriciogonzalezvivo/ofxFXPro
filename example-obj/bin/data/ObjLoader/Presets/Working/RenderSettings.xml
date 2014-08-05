@@ -1,9 +1,9 @@
 <Canvas>
     <Kind>40</Kind>
     <Name>RenderSettings</Name>
-    <IsMinified>1</IsMinified>
-    <XPosition>1.000000000</XPosition>
-    <YPosition>179.000000000</YPosition>
+    <IsMinified>0</IsMinified>
+    <XPosition>294.000000000</XPosition>
+    <YPosition>73.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>2</Kind>
@@ -13,10 +13,10 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Back CULL</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>Front CULL</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>

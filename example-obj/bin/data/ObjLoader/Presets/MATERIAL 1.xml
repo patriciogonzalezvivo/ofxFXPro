@@ -3,7 +3,7 @@
     <Name>MATERIAL 1</Name>
     <IsMinified>1</IsMinified>
     <XPosition>1.000000000</XPosition>
-    <YPosition>207.000000000</YPosition>
+    <YPosition>229.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>2</Kind>
@@ -68,7 +68,7 @@
 <Widget>
     <Kind>25</Kind>
     <Name>sBRI</Name>
-    <Value>0.392670155</Value>
+    <Value>0.445026189</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>

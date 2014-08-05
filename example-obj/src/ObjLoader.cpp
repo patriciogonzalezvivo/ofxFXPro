@@ -27,6 +27,9 @@ void ObjLoader::selfSetup(){
     ofEnableArbTex();
     
     bumpMap.texture = meshTexture;
+    cube.texture = meshTexture;
+    
+    cube.load(getDataPath()+"shaders/cubeReflection");
 }
 
 void ObjLoader::selfSetupGuis(){
@@ -36,6 +39,8 @@ void ObjLoader::selfSetupGuis(){
     guiAdd(bumpMap);
     guiAdd(hatchShader);
     guiAdd(grid);
+    
+    guiAdd(cube);
 }
 
 void ObjLoader::selfSetupSystemGui(){
@@ -70,32 +75,24 @@ void ObjLoader::selfDraw(){
     ofPopMatrix();
     
     materials["MATERIAL 1"]->begin();
+    
     float scale = 3;
     
+    cube.begin();
     bumpMap.begin();
-    ofPushMatrix();
-    ofScale(scale,scale,scale);
-    ofTranslate(-meshCenter);
-    ofTranslate(-30,0);
-    mesh.draw();
-    ofPopMatrix();
-    bumpMap.end();
-    
-    hatchShader.begin();
-    ofPushMatrix();
-    ofScale(scale,scale,scale);
-    ofTranslate(-meshCenter);
-    mesh.draw();
-    ofPopMatrix();
-    hatchShader.end();
-    
     sphereMap.begin();
+    hatchShader.begin();
+    
     ofPushMatrix();
     ofScale(scale,scale,scale);
     ofTranslate(-meshCenter);
-    ofTranslate(+30,0);
     mesh.draw();
     ofPopMatrix();
+
+    hatchShader.end();
     sphereMap.end();
+    bumpMap.end();
+    cube.end();
+    
     materials["MATERIAL 1"]->end();
 }

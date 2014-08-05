@@ -3,7 +3,7 @@
     <Name>SPOT</Name>
     <IsMinified>1</IsMinified>
     <XPosition>1.000000000</XPosition>
-    <YPosition>307.000000000</YPosition>
+    <YPosition>329.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>2</Kind>
@@ -23,32 +23,32 @@
 <Widget>
     <Kind>25</Kind>
     <Name>POSX</Name>
-    <Value>-32.411754608</Value>
+    <Value>-201.257461548</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>POSY</Name>
-    <Value>306.399932861</Value>
+    <Value>289.600494385</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>POSZ</Name>
-    <Value>145.087951660</Value>
+    <Value>170.175079346</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>ORIX</Name>
-    <Value>-66.910995483</Value>
+    <Value>-78.219902039</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>ORIY</Name>
-    <Value>2.827455997</Value>
+    <Value>-115.916343689</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>
     <Name>ORIZ</Name>
-    <Value>0.000000000</Value>
+    <Value>-29.214889526</Value>
 </Widget>
 <Widget>
     <Kind>25</Kind>

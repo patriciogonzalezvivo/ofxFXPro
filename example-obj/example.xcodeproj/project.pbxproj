@@ -52,6 +52,7 @@
 		3D6A57581986D38C008C7C7C /* UIClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A573F1986D38C008C7C7C /* UIClass.cpp */; };
 		3D6A57591986D38C008C7C7C /* ofx2DPro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A57411986D38C008C7C7C /* ofx2DPro.cpp */; };
 		3D6A575A1986D38C008C7C7C /* ofx3DPro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A57431986D38C008C7C7C /* ofx3DPro.cpp */; };
+		3DBB3296198FE14D00F11F08 /* UICubeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB3294198FE14D00F11F08 /* UICubeMap.cpp */; };
 		3b8120368b4fccd80883baf3128d1467 /* ofxAssimpAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36068d6c1d6d412786a5c4c1868cfb5e /* ofxAssimpAnimation.cpp */; };
 		3d4ea8e172d3e4a30fefa969797f0789 /* ofxUIImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 938f5a098a216b403906129cc0e18a64 /* ofxUIImage.cpp */; };
 		43badbb2fe0f17d34b57a705622bd4a2 /* ofxUIScrollableCanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = bfd3387aa9efa53e1b4f087b3fdfa1d3 /* ofxUIScrollableCanvas.cpp */; };
@@ -293,6 +294,8 @@
 		3D6A57431986D38C008C7C7C /* ofx3DPro.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofx3DPro.cpp; sourceTree = "<group>"; };
 		3D6A57441986D38C008C7C7C /* ofx3DPro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofx3DPro.h; sourceTree = "<group>"; };
 		3D6A57451986D38C008C7C7C /* ofxPro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxPro.h; sourceTree = "<group>"; };
+		3DBB3294198FE14D00F11F08 /* UICubeMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICubeMap.cpp; sourceTree = "<group>"; };
+		3DBB3295198FE14D00F11F08 /* UICubeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICubeMap.h; sourceTree = "<group>"; };
 		3c9066fb257b904a547019eda3209785 /* ofxUIDragableLabelButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUIDragableLabelButton.h; path = ../../../addons/ofxUI/src/ofxUIDragableLabelButton.h; sourceTree = SOURCE_ROOT; };
 		3dbacca958271ecb22f7ab67d74a49ce /* aiConfig.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = aiConfig.h; path = ../../../addons/ofxAssimpModelLoader/libs/assimp/include/aiConfig.h; sourceTree = SOURCE_ROOT; };
 		4117b8c24d49837d3df9c23bd2405bdc /* ofxUIToggle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUIToggle.h; path = ../../../addons/ofxUI/src/ofxUIToggle.h; sourceTree = SOURCE_ROOT; };
@@ -687,6 +690,8 @@
 				3D6A56F81986D343008C7C7C /* UIHatchMap.h */,
 				3D6A56F91986D343008C7C7C /* UIMatCap.cpp */,
 				3D6A56FA1986D343008C7C7C /* UIMatCap.h */,
+				3DBB3294198FE14D00F11F08 /* UICubeMap.cpp */,
+				3DBB3295198FE14D00F11F08 /* UICubeMap.h */,
 			);
 			path = render;
 			sourceTree = "<group>";
@@ -1385,6 +1390,7 @@
 				3D6A57091986D343008C7C7C /* UIBumpMap.cpp in Sources */,
 				f392a99d83698fc09912788025e19c5d /* ofxUIDropDownList.cpp in Sources */,
 				3D6A574A1986D38C008C7C7C /* UIFog.cpp in Sources */,
+				3DBB3296198FE14D00F11F08 /* UICubeMap.cpp in Sources */,
 				084025da517d8329301fe1b62b99dfa0 /* ofxUIEventArgs.cpp in Sources */,
 				7252706da14c1be63950adda6d4d0967 /* ofxUIFPS.cpp in Sources */,
 				22030cbdcc25d815e7ed6757c2507f08 /* ofxUIFPSSlider.cpp in Sources */,

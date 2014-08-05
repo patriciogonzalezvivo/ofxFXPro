@@ -1,6 +1,5 @@
 #version 120
 
-
 uniform sampler2D tNormal;
 uniform sampler2D tColor;
 
@@ -163,7 +162,7 @@ void main() {
         N = tsb * normalTex;
     }
 
-    vec3 color = calc_lighting_color(vEye,N).rgb;;
+    vec3 color = calc_lighting_color(vEye,N).rgb;
 
     if( rim > 0. ) {
         float cosTheta = abs( dot( normalize(vEye), N) );

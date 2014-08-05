@@ -2,8 +2,8 @@
     <Kind>40</Kind>
     <Name>cubeReflection</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>796.000000000</XPosition>
-    <YPosition>54.000000000</YPosition>
+    <XPosition>726.000000000</XPosition>
+    <YPosition>-5.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>2</Kind>
@@ -23,12 +23,12 @@
 <Widget>
     <Kind>20</Kind>
     <Name>cubeMap/SaintPetersSquare2.jpg</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
     <Name>cubeMap/skybox_texture.jpg</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -78,12 +78,12 @@
 <Widget>
     <Kind>20</Kind>
     <Name>normals/6624-normal.jpg</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
     <Name>normals/7146-normal.jpg</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -173,35 +173,35 @@
 <Widget>
     <Kind>4</Kind>
     <Name>normalRepeat</Name>
-    <Value>0.517241359</Value>
+    <Value>0.270935953</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>normalScale</Name>
-    <Value>0.078817733</Value>
+    <Value>0.083743840</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>rim</Name>
-    <Value>0.349753708</Value>
+    <Value>0.059113301</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>transparency</Name>
-    <Value>1.000000000</Value>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ReflectPct</Name>
+    <Value>0.408867002</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>FresnelPower</Name>
-    <Value>0.157635465</Value>
+    <Value>0.295566499</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>ChromaAb</Name>
     <Value>0.157635465</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>ReflectPct</Name>
-    <Value>1.000000000</Value>
 </Widget>

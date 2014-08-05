@@ -115,6 +115,34 @@ void SpotLight(in int i, in vec3 eye, vec3 ecPosition3, in vec3 normal, inout ve
     specular += gl_LightSource[i].specular * pf * attenuation;
 }
 
+vec4 calc_lighting_color(in vec3 _ecPosition, in vec3 _normal) {
+    vec3 eye = vec3(0.0, 0.0, 1.0);
+
+    vec4 amb  = vec4(0.0);
+    vec4 diff = vec4(0.0);
+    vec4 spec = vec4(0.0);
+
+    for (int i = 0; i < lightsNumber; i++){
+        if (gl_LightSource[i].position.w == 0.0)
+            DirectionalLight(i, normalize(_normal), amb, diff, spec);
+        else if (gl_LightSource[i].spotCutoff == 180.0)
+            PointLight(i, eye, _ecPosition, normalize(_normal), amb, diff, spec);
+        else
+            SpotLight(i, eye, _ecPosition, normalize(_normal), amb, diff, spec);
+    }
+
+    vec4 diffuseColor = gl_FrontMaterial.diffuse;
+
+    if(_useColorTexture == 1.){
+        diffuseColor = texture2D(tColor, vTexCoord);
+    }
+
+    return  gl_FrontLightModelProduct.sceneColor +
+            amb * gl_FrontMaterial.ambient +
+            diff * diffuseColor +
+            spec * gl_FrontMaterial.specular;
+}
+
 vec3 getTriPlanarBlend(vec3 _wNorm){
     vec3 blending = abs( _wNorm );
     blending = normalize(max(blending, 0.00001));
@@ -142,34 +170,11 @@ void main (void){
         N = tsb * normalTex;
     }
 
-    vec3 color = vec3(0.);//calc_lighting_color(vEye,N).rgb;
+    vec3 color = vec3(0.);
 
     {
-    	vec3 eye = vec3(0.0, 0.0, 1.0);
-
-    	vec4 amb  = vec4(0.0);
-    	vec4 diff = vec4(0.0);
-    	vec4 spec = vec4(0.0);
-
-    	for (int i = 0; i < lightsNumber; i++){
-        	if (gl_LightSource[i].position.w == 0.0)
-            	DirectionalLight(i, N, amb, diff, spec);
-        	else if (gl_LightSource[i].spotCutoff == 180.0)
-            	PointLight(i, eye, vEye, N, amb, diff, spec);
-        	else
-            	SpotLight(i, eye, vEye, N, amb, diff, spec);
-    	}
-
-    	vec4 diffuseColor = gl_FrontMaterial.diffuse;
-
-    	if(_useColorTexture == 1.){
-        	diffuseColor = texture2D(tColor, vTexCoord);
-    	}
-
-    	color = vec4(gl_FrontLightModelProduct.sceneColor +
-        	    	amb * gl_FrontMaterial.ambient +
-            		diff * diffuseColor +
-            		spec * gl_FrontMaterial.specular).rgb;
+        vec4 eyeSpaceVertexPos = gl_ModelViewMatrix * vPos;
+    	color = calc_lighting_color(vec3(eyeSpaceVertexPos) / eyeSpaceVertexPos.w,N).rgb;
    	}
 
     {

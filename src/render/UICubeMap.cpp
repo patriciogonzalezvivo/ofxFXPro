@@ -35,7 +35,7 @@ void main (void){\n\
     extractUniforms(fragmentShader);
     
     bAllocated = false;
-    bDebug = false;
+    bDrawCube = false;
 }
 
 void UICubeMap::setupUI(){
@@ -68,7 +68,8 @@ void UICubeMap::setupUI(){
 
     gui->setGlobalButtonDimension(w);
     
-    gui->addToggle("DEBUG", &bDebug);
+    gui->addSlider("CubeSize", 100, 10000, &cubeSize);
+    gui->addToggle("DEBUG", &bDrawCube);
     UIBumpMap::setupUI();
 }
 
@@ -166,25 +167,13 @@ string UICubeMap::getClassName(){
 
 void UICubeMap::begin(){
     if(bEnable&&bAllocated){
-        if(bDebug){
+        if(bDrawCube){
             draw();
         }
         
         glEnable( GL_TEXTURE_CUBE_MAP );
         glBindTexture( GL_TEXTURE_CUBE_MAP, textureObjectID );
-//        UIBumpMap::begin();
-        UIShader::begin();
-        if(normal.isAllocated()){
-            setUniformTexture("tNormal", normal, 1);
-        } else {
-            setUniform1f("normalScale", 0);
-        }
-        if(texture.isAllocated()){
-            setUniformTexture("tColor", texture, 2);
-            setUniform1f("_useColorTexture", 1);
-        } else {
-            setUniform1f("_useColorTexture", 0);
-        }
+        UIBumpMap::begin();
     }
 }
 
@@ -202,7 +191,7 @@ void UICubeMap::draw(){
         glEnable( GL_TEXTURE_CUBE_MAP );
         glBindTexture( GL_TEXTURE_CUBE_MAP, textureObjectID );
         debugShader.begin();
-        ofDrawBox(5000);
+        ofDrawBox(cubeSize);
         debugShader.end();
         glBindTexture(GL_TEXTURE_CUBE_MAP, 0 );
         glDisable( GL_TEXTURE_CUBE_MAP );

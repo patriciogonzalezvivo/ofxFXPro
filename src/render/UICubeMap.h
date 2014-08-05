@@ -22,7 +22,9 @@ public:
     void    end();
     
     void    draw();
-    bool    bDebug;
+    
+    float   cubeSize;
+    bool    bDrawCube;
     
 protected:
     void    guiEvent(ofxUIEventArgs &e);

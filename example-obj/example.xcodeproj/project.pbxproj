@@ -296,6 +296,7 @@
 		3D6A57451986D38C008C7C7C /* ofxPro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxPro.h; sourceTree = "<group>"; };
 		3DBB3294198FE14D00F11F08 /* UICubeMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICubeMap.cpp; sourceTree = "<group>"; };
 		3DBB3295198FE14D00F11F08 /* UICubeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICubeMap.h; sourceTree = "<group>"; };
+		3DBB3298199111EE00F11F08 /* ShaderFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderFunctions.h; sourceTree = "<group>"; };
 		3c9066fb257b904a547019eda3209785 /* ofxUIDragableLabelButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUIDragableLabelButton.h; path = ../../../addons/ofxUI/src/ofxUIDragableLabelButton.h; sourceTree = SOURCE_ROOT; };
 		3dbacca958271ecb22f7ab67d74a49ce /* aiConfig.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = aiConfig.h; path = ../../../addons/ofxAssimpModelLoader/libs/assimp/include/aiConfig.h; sourceTree = SOURCE_ROOT; };
 		4117b8c24d49837d3df9c23bd2405bdc /* ofxUIToggle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUIToggle.h; path = ../../../addons/ofxUI/src/ofxUIToggle.h; sourceTree = SOURCE_ROOT; };
@@ -692,6 +693,7 @@
 				3D6A56FA1986D343008C7C7C /* UIMatCap.h */,
 				3DBB3294198FE14D00F11F08 /* UICubeMap.cpp */,
 				3DBB3295198FE14D00F11F08 /* UICubeMap.h */,
+				3DBB3298199111EE00F11F08 /* ShaderFunctions.h */,
 			);
 			path = render;
 			sourceTree = "<group>";

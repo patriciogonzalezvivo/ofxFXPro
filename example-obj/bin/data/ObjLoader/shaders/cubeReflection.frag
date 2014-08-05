@@ -22,7 +22,6 @@ varying vec2 vTexCoord;
 
 const float Eta = 1./1.5;
 
-
 int lightsNumber = 8;
 
 void DirectionalLight(in int i, in vec3 normal,inout vec4 ambient, inout vec4 diffuse, inout vec4 specular){
@@ -143,31 +142,35 @@ vec4 calc_lighting_color(in vec3 _ecPosition, in vec3 _normal) {
             spec * gl_FrontMaterial.specular;
 }
 
-vec3 getTriPlanarBlend(vec3 _wNorm){
-    vec3 blending = abs( _wNorm );
+vec3 getTriPlanarBlend(vec3 _Norm){
+    vec3 blending = abs( _Norm );
     blending = normalize(max(blending, 0.00001));
     float b = (blending.x + blending.y + blending.z);
     blending /= vec3(b, b, b);
     return blending;
 }
 
+vec3 getTriplanarNormal(sampler2D _NormalMap, vec3 _vertexPosistion, vec3 _vertexNormal, float _repeat, float _scale){
+    vec3 blending = getTriPlanarBlend(_vertexNormal);
+    vec3 xaxis = texture2D( _NormalMap, _vertexPosistion.yz * _repeat).rgb;
+    vec3 yaxis = texture2D( _NormalMap, _vertexPosistion.xz * _repeat).rgb;
+    vec3 zaxis = texture2D( _NormalMap, _vertexPosistion.xy * _repeat).rgb;
+    vec3 normalTex = xaxis * blending.x + xaxis * blending.y + zaxis * blending.z;
+    normalTex = normalTex * 2.0 - 1.0;
+    normalTex.xy *= _scale*2.0;
+    normalTex = normalize( normalTex );
+        
+    vec3 T = vec3(1.,0.,0.);
+    vec3 BT = normalize( cross( _vertexNormal, T ) * 1.0 );
+    mat3 tsb = mat3( normalize( T ), normalize( BT ), normalize( _vertexNormal ) );
+    return tsb * normalTex;
+}
+
 void main (void){
     vec3 N = normalize(vNormal);
 
     if(normalScale>0.){
-        vec3 blending = getTriPlanarBlend(gl_NormalMatrix*vNormal);
-        vec3 xaxis = texture2D( tNormal, vPos.yz * normalRepeat).rgb;
-        vec3 yaxis = texture2D( tNormal, vPos.xz * normalRepeat).rgb;
-        vec3 zaxis = texture2D( tNormal, vPos.xy * normalRepeat).rgb;
-        vec3 normalTex = xaxis * blending.x + xaxis * blending.y + zaxis * blending.z;
-        normalTex = normalTex * 2.0 - 1.0;
-        normalTex.xy *= normalScale*2.0;
-        normalTex = normalize( normalTex );
-        
-        vec3 T = vec3(0.,1.,0.);
-        vec3 BT = normalize( cross( vNormal, T ) * 1.0 );
-        mat3 tsb = mat3( normalize( T ), normalize( BT ), normalize( vNormal ) );
-        N = tsb * normalTex;
+        N = getTriplanarNormal(tNormal,vPos.xyz,vNormal,normalRepeat,normalScale);
     }
 
     vec3 color = vec3(0.);

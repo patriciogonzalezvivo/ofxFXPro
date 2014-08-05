@@ -6,6 +6,7 @@
 //
 
 #include "UIMatCap.h"
+#include "ShaderFunctions.h"
 
 UIMatCap::UIMatCap(){
     
@@ -154,15 +155,9 @@ varying vec3 U;\n\
 varying vec2 N;\n\
 \n\
 varying vec3 Pos;\n\
-\n\
-vec3 getTriPlanarBlend(vec3 _wNorm){\n\
-    vec3 blending = abs( _wNorm );\n\
-    blending = normalize(max(blending, 0.00001));\n\
-    float b = (blending.x + blending.y + blending.z);\n\
-    blending /= vec3(b, b, b);\n\
-    return blending;\n\
-}\n\
-\n\
+\n" +
+    triplanarFunctions +
+"\n\
 vec2 barrelDistortion(vec2 coord, float amt) {\n\
     vec2 cc = coord - 0.5;\n\
     float dist = dot(cc, cc);\n\
@@ -223,21 +218,7 @@ void main() {\n\
             finalNormal = tsb * normalTex;\n\
 \n\
         } else {\n\
-            vec3 blending = getTriPlanarBlend(Normal);\n\
-            vec3 xaxis = texture2D( tNormal, Pos.yz * normalRepeat).rgb;\n\
-            vec3 yaxis = texture2D( tNormal, Pos.xz * normalRepeat).rgb;\n\
-            vec3 zaxis = texture2D( tNormal, Pos.xy * normalRepeat).rgb;\n\
-            vec3 normalTex = xaxis * blending.x + xaxis * blending.y + zaxis * blending.z;\n\
-            normalTex = normalTex * 2.0 - 1.0;\n\
-            normalTex.xy *= normalScale;\n\
-            normalTex.y *= -1.;\n\
-            normalTex = normalize( normalTex );\n\
-\n\
-            vec3 T = vec3(1.0,0.0,0.0);\n\
-            vec3 BT = normalize( cross( Normal, T ) * 1.0 );\n\
-\n\
-            mat3 tsb = mat3( normalize( T ), normalize( BT ), normalize( Normal ) );\n\
-            finalNormal = tsb * normalTex;\n\
+            finalNormal = getTriplanarNormal(tNormal,Pos.xyz,Normal,normalRepeat,normalScale);\n\
         }\n\
     }\n\
 \n\

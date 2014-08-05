@@ -6,6 +6,7 @@
 //
 
 #include "UICubeMap.h"
+#include "ShaderFunctions.h"
 
 UICubeMap::UICubeMap(){
     vertexShader = "#version 120\n\n\
@@ -23,14 +24,116 @@ uniform samplerCube EnvMap;\n\
 void main (void){\n\
     gl_FragColor = textureCube(EnvMap, gl_TexCoord[0].stp);\n\
 }";
+    debugShader.setupShaderFromSource(GL_VERTEX_SHADER, vertexShader);
+    debugShader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragmentShader);
+    debugShader.linkProgram();
+    
+    vertexShader = "#version 120\n\n\
+    \n\
+varying vec4 vPos;\n\
+varying vec3 vNormal;\n\
+varying vec3 vEye;\n\
+varying vec2 vTexCoord;\n\
+\n\
+void main(){\n\
+    vec3 CameraPosition = vec4(gl_ModelViewMatrixInverse * normalize(vec4(1.))).xyz;\n\
+    \n\
+    vec4 ecPosition  = gl_Vertex;\n\
+    vec3 ecPosition3 = ecPosition.xyz / ecPosition.w;\n\
+    \n\
+    vEye = normalize(ecPosition3-CameraPosition);\n\
+    vNormal = gl_Normal;\n\
+    \n\
+    vPos =  vec4( gl_Vertex.xyz, 1.0 );\n\
+    vTexCoord = gl_MultiTexCoord0.xy;\n\
+    \n\
+    gl_Position    = ftransform();\n\
+    gl_FrontColor = gl_Color;\n\
+}";
+    
+    fragmentShader = "#version 120\n\
+\n\
+uniform samplerCube Cubemap;\n\
+uniform sampler2D tNormal;\n\
+uniform sampler2D tColor;\n\
+\n\
+uniform float normalRepeat;\n\
+uniform float normalScale;\n\
+uniform float rim;\n\
+\n\
+uniform float _useColorTexture;\n\
+\n\
+uniform float ReflectPct;\n\
+uniform float FresnelPower;\n\
+uniform float ChromaAb;\n\
+uniform float transparency;\n\
+\n\
+varying vec4 vPos;\n\
+varying vec3 vNormal;\n\
+varying vec3 vEye;\n\
+varying vec2 vTexCoord;\n\
+\n\
+const float Eta = 1./1.5;\n" +
+    lightsFunctions +
+    triplanarFunctions +
+    + "\n\
+\n\
+void main (void){\n\
+    vec3 N = normalize(vNormal);\n\
+\n\
+    if(normalScale>0.){\n\
+        N = getTriplanarNormal(tNormal,vPos.xyz,vNormal,normalRepeat,normalScale);\n\
+    }\n\
+    \n\
+    vec3 color = gl_FrontLightModelProduct.sceneColor.rgb;\n\
+    vec4 eyeSpaceVertexPos = gl_ModelViewMatrix * vPos;\n\
+    if(_useColorTexture>0.){\n\
+    color += calc_lighting(vec3(eyeSpaceVertexPos) / eyeSpaceVertexPos.w,N,gl_FrontMaterial.ambient,texture2D(tColor, vTexCoord),gl_FrontMaterial.specular).rgb;\n\
+    } else {\n\
+    color += calc_lighting_color(vec3(eyeSpaceVertexPos) / eyeSpaceVertexPos.w,N).rgb;\n\
+    }\n\
+\n\
+    {\n\
+        float F  = ((1.0-Eta) * (1.0-Eta)) / ((1.0+Eta) * (1.0+Eta));\n\
+        float Ratio = F + (1.0 - F) * pow((1.0 - dot(-vEye, N)), (FresnelPower*5.0) );\n\
+        \n\
+        vec3 RefractR = refract(vEye, N, Eta-ChromaAb*0.2);\n\
+        RefractR = vec3(gl_TextureMatrix[0] * vec4(RefractR, 1.0));\n\
+        vec3 RefractG = refract(vEye, N, Eta+ChromaAb*0.1);\n\
+        RefractG = vec3(gl_TextureMatrix[0] * vec4(RefractG, 1.0));\n\
+        vec3 RefractB = refract(vEye, N, Eta+ChromaAb*0.2);\n\
+        RefractB = vec3(gl_TextureMatrix[0] * vec4(RefractB, 1.0));\n\
+        \n\
+        vec3 Reflect  = reflect(vEye, N);\n\
+        Reflect  = vec3(gl_TextureMatrix[0] * vec4(Reflect, 1.0));\n\
+        \n\
+        vec3 refractColor, reflectColor;\n\
+        refractColor.r = vec3(textureCube(Cubemap, RefractR)).r;\n\
+        refractColor.g = vec3(textureCube(Cubemap, RefractG)).g;\n\
+        refractColor.b = vec3(textureCube(Cubemap, RefractB)).b;\n\
+        reflectColor   = vec3(textureCube(Cubemap, Reflect));\n\
+        color = mix(color,mix(refractColor, reflectColor, Ratio),ReflectPct);\n\
+    }\n\
+    \n\
+    if( rim > 0. ) {\n\
+        float cosTheta = abs( dot( normalize(vEye), N) );\n\
+        float f = rim * ( 1. - smoothstep( 0.0, 1., cosTheta ) );\n\
+        \n\
+        color += gl_FrontMaterial.ambient.rgb *f;\n\
+    }\n\
+    \n\
+    if(transparency>0.0){\n\
+        float cosTheta = abs( dot( normalize(vEye), N) );\n\
+        float fresnel = pow(1.0 - cosTheta, 4.0);\n\
+        gl_FragColor = vec4(color,mix(gl_Color.a,fresnel,transparency) );\n\
+    } else {\n\
+        gl_FragColor = vec4(color,gl_Color.a );\n\
+    }\n\
+}";
     
     setupShaderFromSource(GL_VERTEX_SHADER, vertexShader);
     setupShaderFromSource(GL_FRAGMENT_SHADER, fragmentShader);
     linkProgram();
-    
-    debugShader.setupShaderFromSource(GL_VERTEX_SHADER, vertexShader);
-    debugShader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragmentShader);
-    debugShader.linkProgram();
     
     extractUniforms(fragmentShader);
     
@@ -113,7 +216,8 @@ void UICubeMap::loadMap( string _image ){
         if(size*3==pixels.getHeight()){
             cout<<"Seems like a cubeMap!"<<endl;
         } else {
-            cout<<"DON'T seems like a valid cubeMap"<<endl;
+            cout << _image << " DON'T seems like a valid cubeMap"<<endl;
+            return;
         }
         
         ofPixels pos_x,pos_y,pos_z,neg_x,neg_y,neg_z;
@@ -145,13 +249,18 @@ void UICubeMap::loadMap( string _image ){
         data_ny = neg_y.getPixels();
         data_nz = neg_z.getPixels();
         
-        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB, size, size, 0, GL_RGB, GL_UNSIGNED_BYTE, data_px); // positive x
-        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGB, size, size, 0, GL_RGB, GL_UNSIGNED_BYTE, data_py); // positive y
-        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGB, size, size, 0, GL_RGB, GL_UNSIGNED_BYTE, data_pz); // positive z
+        GLuint pixelType = GL_RGB;
+        if(pixels.getNumChannels()==4){
+            pixelType = GL_RGBA;
+        }
         
-        glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGB, size, size, 0, GL_RGB, GL_UNSIGNED_BYTE, data_nx); // negative x
-        glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGB, size, size, 0, GL_RGB, GL_UNSIGNED_BYTE, data_ny); // negative y
-        glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGB, size, size, 0, GL_RGB, GL_UNSIGNED_BYTE, data_nz); // negative z
+        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, pixelType, size, size, 0, pixelType, GL_UNSIGNED_BYTE, data_px); // positive x
+        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, pixelType, size, size, 0, pixelType, GL_UNSIGNED_BYTE, data_py); // positive y
+        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, pixelType, size, size, 0, pixelType, GL_UNSIGNED_BYTE, data_pz); // positive z
+        
+        glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, pixelType, size, size, 0, pixelType, GL_UNSIGNED_BYTE, data_nx); // negative x
+        glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, pixelType, size, size, 0, pixelType, GL_UNSIGNED_BYTE, data_ny); // negative y
+        glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, pixelType, size, size, 0, pixelType, GL_UNSIGNED_BYTE, data_nz); // negative z
         
         bAllocated = true;
     }

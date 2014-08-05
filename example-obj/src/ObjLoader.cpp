@@ -29,7 +29,7 @@ void ObjLoader::selfSetup(){
     bumpMap.texture = meshTexture;
     cube.texture = meshTexture;
     
-    cube.load(getDataPath()+"shaders/cubeReflection");
+//    cube.load(getDataPath()+"shaders/cubeReflection");
 }
 
 void ObjLoader::selfSetupGuis(){

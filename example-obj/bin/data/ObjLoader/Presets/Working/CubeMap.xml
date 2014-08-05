@@ -2,13 +2,78 @@
     <Kind>40</Kind>
     <Name>CubeMap</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>1.000000000</XPosition>
-    <YPosition>454.000000000</YPosition>
+    <XPosition>1371.000000000</XPosition>
+    <YPosition>79.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>2</Kind>
     <Name>ENABLE</Name>
     <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/0-desnoon-skybox.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/3582c53994c83d6281e84966b4b0962b.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/37992559vr5.png</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/3_MilchstrasseWuerfel.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/3e3cd48d0cb31cbb5b97994c3a372be2.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/5dbd44b630abef0d6030d9a2229b85b9.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/8e71f6352fe27ce96f958a2644ab43f7.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/92af797708f5e5981ffbc3a87ab0fc7c.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/a3e28d16f8197d8d0a5987ac8834bb86.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/ae41ba5cde57d490f15f693ceb64c93b.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/cube.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/cube2.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/cube_unwrapped.jpg</Name>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -22,21 +87,236 @@
 </Widget>
 <Widget>
     <Kind>20</Kind>
-    <Name>cubeMap/SaintPetersSquare1.jpg</Name>
+    <Name>cubeMap/envtools.png</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
-    <Name>cubeMap/SaintPetersSquare2.jpg</Name>
+    <Name>cubeMap/fulllg.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/grimmnight_large.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/park-cube-map.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/SaintPetersBasilica.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/skybox.jpg</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
     <Name>cubeMap/skybox_texture.jpg</Name>
-    <Value>1</Value>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/skyboxsun25degtest.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/skyboxsun5deg.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/spheremapgalaxyasteroid.png</Name>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
     <Name>cubeMap/Tenerife.jpg</Name>
     <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/Topic7NotesImage4.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>CubeSize</Name>
+    <Value>6293.596191406</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>DEBUG</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/02.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/1324-normal.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/242-normal.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/243-normal.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/2563-normal.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/295-normal.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/4918-normal.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/6624-normal.jpg</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/7146-normal.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/879-normal.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/99232450425c8132b17dbccf65da365a.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/brick-normal.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/cr_wallpaper1_NRM.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/fig29.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/floor2_ddn.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/forestfloornrmii7.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/metal1_normalmap.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/normal.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/normalmap1.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/normalmap_tile_even.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/Rock_01_local.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/stage7.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/stone_wall_normal_map.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/Wall3_normalmap.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/Worn Temple Wall.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>normals/wrinkle-normal.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>normalRepeat</Name>
+    <Value>0.379310340</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>normalScale</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>rim</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>transparency</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ReflectPct</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FresnelPower</Name>
+    <Value>0.256157637</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ChromaAb</Name>
+    <Value>0.118226603</Value>
 </Widget>

@@ -1,13 +1,78 @@
 <Canvas>
     <Kind>40</Kind>
     <Name>cubeReflection</Name>
-    <IsMinified>1</IsMinified>
-    <XPosition>1.000000000</XPosition>
-    <YPosition>454.000000000</YPosition>
+    <IsMinified>0</IsMinified>
+    <XPosition>778.000000000</XPosition>
+    <YPosition>2.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>2</Kind>
     <Name>ENABLE</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/0-desnoon-skybox.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/3582c53994c83d6281e84966b4b0962b.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/37992559vr5.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/3_MilchstrasseWuerfel.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/3e3cd48d0cb31cbb5b97994c3a372be2.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/5dbd44b630abef0d6030d9a2229b85b9.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/8e71f6352fe27ce96f958a2644ab43f7.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/92af797708f5e5981ffbc3a87ab0fc7c.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/a3e28d16f8197d8d0a5987ac8834bb86.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/ae41ba5cde57d490f15f693ceb64c93b.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/cube.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/cube2.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/cube_unwrapped.jpg</Name>
     <Value>1</Value>
 </Widget>
 <Widget>
@@ -17,18 +82,58 @@
 </Widget>
 <Widget>
     <Kind>20</Kind>
-    <Name>cubeMap/SaintPetersSquare1.jpg</Name>
+    <Name>cubeMap/cubemaplayout.png</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
-    <Name>cubeMap/SaintPetersSquare2.jpg</Name>
+    <Name>cubeMap/envtools.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/fulllg.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/grimmnight_large.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/park-cube-map.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/SaintPetersBasilica.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/skybox.jpg</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
     <Name>cubeMap/skybox_texture.jpg</Name>
-    <Value>1</Value>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/skyboxsun25degtest.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/skyboxsun5deg.png</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/spheremapgalaxyasteroid.png</Name>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -36,9 +141,14 @@
     <Value>0</Value>
 </Widget>
 <Widget>
+    <Kind>20</Kind>
+    <Name>cubeMap/Topic7NotesImage4.jpg</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
     <Kind>4</Kind>
     <Name>CubeSize</Name>
-    <Value>5025.615722656</Value>
+    <Value>5464.531738281</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -183,17 +293,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>normalScale</Name>
-    <Value>0.054187194</Value>
+    <Value>0.108374387</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>rim</Name>
-    <Value>0.000000000</Value>
+    <Value>0.162561581</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>transparency</Name>
-    <Value>0.615763545</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -208,5 +318,5 @@
 <Widget>
     <Kind>4</Kind>
     <Name>ChromaAb</Name>
-    <Value>0.088669948</Value>
+    <Value>0.019704433</Value>
 </Widget>

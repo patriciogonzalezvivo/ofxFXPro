@@ -87,10 +87,11 @@ void main (void){\n\
     \n\
     vec3 color = gl_FrontLightModelProduct.sceneColor.rgb;\n\
     vec4 eyeSpaceVertexPos = gl_ModelViewMatrix * vPos;\n\
+    \n\
     if(_useColorTexture>0.){\n\
-    color += calc_lighting(vec3(eyeSpaceVertexPos) / eyeSpaceVertexPos.w,N,gl_FrontMaterial.ambient,texture2D(tColor, vTexCoord),gl_FrontMaterial.specular).rgb;\n\
+        color += calc_lighting(vec3(eyeSpaceVertexPos) / eyeSpaceVertexPos.w,N,gl_FrontMaterial.ambient,texture2D(tColor, vTexCoord),gl_FrontMaterial.specular).rgb;\n\
     } else {\n\
-    color += calc_lighting_color(vec3(eyeSpaceVertexPos) / eyeSpaceVertexPos.w,N).rgb;\n\
+        color += calc_lighting_color(vec3(eyeSpaceVertexPos) / eyeSpaceVertexPos.w,N).rgb;\n\
     }\n\
 \n\
     {\n\
@@ -133,8 +134,6 @@ void main (void){\n\
     
     setupShaderFromSource(GL_VERTEX_SHADER, vertexShader);
     setupShaderFromSource(GL_FRAGMENT_SHADER, fragmentShader);
-    linkProgram();
-    
     extractUniforms(fragmentShader);
     
     bAllocated = false;
@@ -169,11 +168,35 @@ void UICubeMap::setupUI(){
         gui->addSpacer();
     }
 
+    {
+        gui->setGlobalButtonDimension(34);
+        vector<string> list;
+        string path = "GUI/normals";
+        ofDirectory dir(path);
+        int count = 0;
+        if(dir.exists()){
+            dir.listDir();
+            int total = dir.getFiles().size();
+            for (int i = 0; i < total; i++) {
+                list.push_back( dir.getName(i) );
+                gui->addImageToggle("normals/"+dir.getName(i), "GUI/normals/"+dir.getName(i), false);
+                gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+                count++;
+                if(count == 5){
+                    count = 0;
+                    gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
+                }
+            }
+        }
+        gui->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
+        gui->addSpacer();
+    }
+    
     gui->setGlobalButtonDimension(w);
     
     gui->addSlider("CubeSize", 100, 10000, &cubeSize);
     gui->addToggle("DEBUG", &bDrawCube);
-    UIBumpMap::setupUI();
+    UIShader::setupUI();
 }
 
 void UICubeMap::guiEvent(ofxUIEventArgs &e){
@@ -201,11 +224,28 @@ void UICubeMap::guiEvent(ofxUIEventArgs &e){
                     }
                 }
                 
+            } else if (name.find("normals") == 0){
+                loadNormal("GUI/"+name);
+                
+                vector<ofxUIWidget*> w = gui->getWidgets();
+                for (int i = 0; i < w.size(); i++) {
+                    string n = w[i]->getName();
+                    
+                    if( w[i]->getKind() == 20 &&
+                       n.find('.') != string::npos &&
+                       n.find("normals") == 0 &&
+                       n != name){
+                        
+                        ofxUIImageToggle* t = (ofxUIImageToggle*)w[i];
+                        t->setDrawFill(true);
+                        t->setValue(false);
+                    }
+                }
             }
         }
     }
     
-    UIBumpMap::guiEvent(e);
+    UIShader::guiEvent(e);
 }
 
 void UICubeMap::loadMap( string _image ){
@@ -266,6 +306,13 @@ void UICubeMap::loadMap( string _image ){
     }
 }
 
+void UICubeMap::loadNormal(string _path){
+    ofDisableArbTex();
+    ofLoadImage(normal, _path);
+    normal.setTextureWrap(GL_REPEAT, GL_REPEAT);
+    ofEnableArbTex();
+}
+
 string UICubeMap::getClassName(){
     if(fragFile.isFile()){
         return fragFile.getBaseName();
@@ -282,13 +329,26 @@ void UICubeMap::begin(){
         
         glEnable( GL_TEXTURE_CUBE_MAP );
         glBindTexture( GL_TEXTURE_CUBE_MAP, textureObjectID );
-        UIBumpMap::begin();
+        
+        UIShader::begin();
+        if(normal.isAllocated()){
+            setUniformTexture("tNormal", normal, 1);
+        } else {
+            setUniform1f("normalScale", 0);
+        }
+        if(texture.isAllocated()){
+            setUniformTexture("tColor", texture, 2);
+            setUniform1f("_useColorTexture", 1.);
+        } else {
+            setUniformTexture("tColor", normal, 2);
+            setUniform1f("_useColorTexture", 0.);
+        }
     }
 }
 
 void UICubeMap::end(){
     if(bEnable&&bAllocated){
-        UIBumpMap::end();
+        UIShader::end();
         glBindTexture(GL_TEXTURE_CUBE_MAP, 0 );
         glDisable( GL_TEXTURE_CUBE_MAP );
     }

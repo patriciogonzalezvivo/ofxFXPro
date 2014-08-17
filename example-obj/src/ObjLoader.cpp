@@ -29,17 +29,16 @@ void ObjLoader::selfSetup(){
     bumpMap.texture = meshTexture;
     cube.texture = meshTexture;
     
-//    cube.load(getDataPath()+"shaders/cubeReflection");
+    cube.load(getDataPath()+"shaders/cubeReflection");
 }
 
 void ObjLoader::selfSetupGuis(){
     backgroundSet(new UIMapBackground());
     lightAdd("SPOT", OF_LIGHT_SPOT);
-    guiAdd(sphereMap);
-    guiAdd(bumpMap);
-    guiAdd(hatchShader);
     guiAdd(grid);
-    
+    guiAdd(bumpMap);
+    guiAdd(sphereMap);
+    guiAdd(hatchShader);
     guiAdd(cube);
 }
 

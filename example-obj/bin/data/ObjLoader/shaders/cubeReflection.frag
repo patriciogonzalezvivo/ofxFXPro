@@ -8,6 +8,9 @@ uniform float normalRepeat;
 uniform float normalScale;
 uniform float rim;
 
+uniform float pct:
+
+
 uniform float _useColorTexture;
 
 uniform float ReflectPct;
@@ -21,6 +24,7 @@ varying vec3 vEye;
 varying vec2 vTexCoord;
 
 const float Eta = 1./1.5;
+
 
 int lightsNumber = 8;
 

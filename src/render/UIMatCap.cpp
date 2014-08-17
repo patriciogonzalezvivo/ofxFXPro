@@ -259,16 +259,10 @@ void main() {\n\
     setupShaderFromSource(GL_VERTEX_SHADER, vertexShader);
     setupShaderFromSource(GL_FRAGMENT_SHADER, fragmentShader);
     setupShaderFromSource(GL_GEOMETRY_SHADER, geometryShader);
-
+    
     geomInType = GL_TRIANGLES;
     geomOutType = GL_TRIANGLES;
     geomOutCount = 3;
-    
-    setGeometryInputType(geomInType);
-    setGeometryOutputType(geomOutType);
-    setGeometryOutputCount(geomOutCount);
-    
-    linkProgram();
     
     extractUniforms(fragmentShader);
 }
@@ -282,6 +276,14 @@ string UIMatCap::getClassName(){
 }
 
 void UIMatCap::setupUI(){
+    
+    {
+        setGeometryInputType(geomInType);
+        setGeometryOutputType(geomOutType);
+        setGeometryOutputCount(geomOutCount);
+        
+        linkProgram();
+    }
     
     int w = gui->getGlobalButtonDimension();
     

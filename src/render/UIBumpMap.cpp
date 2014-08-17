@@ -81,12 +81,9 @@ void main() {\n\
         gl_FragColor = vec4( color, gl_Color.a );\n\
     }\n\
 }";
-    
+
     setupShaderFromSource(GL_VERTEX_SHADER, vertexShader);
     setupShaderFromSource(GL_FRAGMENT_SHADER, fragmentShader);
-    
-    linkProgram();
-    
     extractUniforms(fragmentShader);
 }
 

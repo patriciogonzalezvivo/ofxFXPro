@@ -2,8 +2,8 @@
     <Kind>40</Kind>
     <Name>CubeMap</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>1371.000000000</XPosition>
-    <YPosition>79.000000000</YPosition>
+    <XPosition>1379.000000000</XPosition>
+    <YPosition>135.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>2</Kind>
@@ -23,7 +23,7 @@
 <Widget>
     <Kind>20</Kind>
     <Name>cubeMap/37992559vr5.png</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -98,7 +98,7 @@
 <Widget>
     <Kind>20</Kind>
     <Name>cubeMap/grimmnight_large.jpg</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -146,16 +146,6 @@
     <Value>0</Value>
 </Widget>
 <Widget>
-    <Kind>4</Kind>
-    <Name>CubeSize</Name>
-    <Value>6293.596191406</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>DEBUG</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
     <Kind>20</Kind>
     <Name>normals/02.jpg</Name>
     <Value>0</Value>
@@ -168,7 +158,7 @@
 <Widget>
     <Kind>20</Kind>
     <Name>normals/242-normal.jpg</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -193,7 +183,7 @@
 <Widget>
     <Kind>20</Kind>
     <Name>normals/6624-normal.jpg</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -287,6 +277,16 @@
 </Widget>
 <Widget>
     <Kind>4</Kind>
+    <Name>CubeSize</Name>
+    <Value>6293.596191406</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>DEBUG</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
     <Name>normalRepeat</Name>
     <Value>0.379310340</Value>
 </Widget>
@@ -298,25 +298,25 @@
 <Widget>
     <Kind>4</Kind>
     <Name>rim</Name>
-    <Value>0.000000000</Value>
+    <Value>0.167487681</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ReflectPct</Name>
+    <Value>0.990147769</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>FresnelPower</Name>
+    <Value>0.610837460</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ChromaAb</Name>
+    <Value>0.083743840</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>transparency</Name>
     <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>ReflectPct</Name>
-    <Value>1.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>FresnelPower</Name>
-    <Value>0.256157637</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>ChromaAb</Name>
-    <Value>0.118226603</Value>
 </Widget>

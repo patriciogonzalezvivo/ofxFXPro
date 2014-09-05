@@ -304,6 +304,7 @@ void UICubeMap::loadMap( string _image, bool _flip ){
             neg_x.rotate90(1);
             data_nx = neg_x.getPixels();    // Rotate 90
             data_ny = pos_z.getPixels();
+            neg_y.rotate90(2);
             data_nz = neg_y.getPixels();
         }
         

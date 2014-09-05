@@ -14,7 +14,7 @@ public:
     
     void    setupUI();
     
-    void    loadMap( string _image );
+    void    loadMap( string _image, bool _flip = true );
     void    loadNormal(string _path);
     
     string  getClassName();
@@ -34,8 +34,10 @@ protected:
     void    guiEvent(ofxUIEventArgs &e);
     
     ofShader debugShader;
+    string  cubeImageName;
     GLuint  textureObjectID;
     int     size;
     
+    bool    bFlipped;
     bool    bAllocated;
 };

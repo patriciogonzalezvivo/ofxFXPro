@@ -8,7 +8,12 @@
 #include "UICubeMap.h"
 #include "ShaderFunctions.h"
 
-UICubeMap::UICubeMap(){
+UICubeMap::UICubeMap():
+bAllocated(false),
+bDrawCube(false),
+bFlipped(true),
+cubeImageName("")
+{
     vertexShader = "#version 120\n\n\
 \n\
 void main(void){\n\
@@ -135,9 +140,6 @@ void main (void){\n\
     setupShaderFromSource(GL_VERTEX_SHADER, vertexShader);
     setupShaderFromSource(GL_FRAGMENT_SHADER, fragmentShader);
     extractUniforms(fragmentShader);
-    
-    bAllocated = false;
-    bDrawCube = false;
 }
 
 void UICubeMap::setupUI(){
@@ -196,19 +198,22 @@ void UICubeMap::setupUI(){
     
     gui->addSlider("CubeSize", 100, 10000, &cubeSize);
     gui->addToggle("DEBUG", &bDrawCube);
+    
+    gui->addToggle("FLIP", &bFlipped);
     UIShader::setupUI();
 }
 
 void UICubeMap::guiEvent(ofxUIEventArgs &e){
     string name = e.widget->getName();
     
-    if (name.find('.') != string::npos){
-        
+    if(name == "FLIP"){
+        loadMap(cubeImageName,bFlipped);
+    } else if (name.find('.') != string::npos){
         ofxUIImageToggle *toggle = (ofxUIImageToggle*)e.widget;
         
         if(toggle->getValue() == true){
             if(name.find("cubeMap") == 0){
-                loadMap("GUI/"+name);
+                loadMap("GUI/"+name,bFlipped);
                 
                 vector<ofxUIWidget*> w = gui->getWidgets();
                 for (int i = 0; i < w.size(); i++) {
@@ -248,17 +253,17 @@ void UICubeMap::guiEvent(ofxUIEventArgs &e){
     UIShader::guiEvent(e);
 }
 
-void UICubeMap::loadMap( string _image ){
+void UICubeMap::loadMap( string _image, bool _flip ){
     ofPixels pixels;
     if (ofLoadImage(pixels, _image)){
         size = pixels.getWidth()/4.;
         
-        if(size*3==pixels.getHeight()){
-            cout<<"Seems like a cubeMap!"<<endl;
-        } else {
+        if(size*3!=pixels.getHeight()){
             cout << _image << " DON'T seems like a valid cubeMap"<<endl;
             return;
         }
+        
+        cubeImageName = _image;
         
         ofPixels pos_x,pos_y,pos_z,neg_x,neg_y,neg_z;
         pixels.cropTo(pos_x, size*2, size, size, size); // RIGHT
@@ -282,12 +287,25 @@ void UICubeMap::loadMap( string _image ){
         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         
         unsigned char * data_px, * data_nx, * data_py, * data_ny, * data_pz, * data_nz;
-        data_px = pos_x.getPixels();
-        data_py = pos_y.getPixels();
-        data_pz = pos_z.getPixels();
-        data_nx = neg_x.getPixels();
-        data_ny = neg_y.getPixels();
-        data_nz = neg_z.getPixels();
+        
+        if( _flip){
+            data_px = pos_x.getPixels();
+            data_py = pos_y.getPixels();
+            data_pz = pos_z.getPixels();
+            data_nx = neg_x.getPixels();
+            data_ny = neg_y.getPixels();
+            data_nz = neg_z.getPixels();
+        } else {
+            pos_x.rotate90(-1);
+            data_px = pos_x.getPixels();    // Rotate 90
+            neg_z.rotate90(2);
+            data_py = neg_z.getPixels();
+            data_pz = pos_y.getPixels();
+            neg_x.rotate90(1);
+            data_nx = neg_x.getPixels();    // Rotate 90
+            data_ny = pos_z.getPixels();
+            data_nz = neg_y.getPixels();
+        }
         
         GLuint pixelType = GL_RGB;
         if(pixels.getNumChannels()==4){

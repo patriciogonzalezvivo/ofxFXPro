@@ -10,24 +10,55 @@
 UIMapBackground::UIMapBackground(){
     UIBackground();
 
-    string vertexShader = "#version 120\n\n";
-    vertexShader += "varying vec2 oTexCoord;\n\n";
-    vertexShader += "void main(){\n";
-    vertexShader += "\toTexCoord = gl_MultiTexCoord0.xy;\n";
-    vertexShader += "\tgl_Position = ftransform();\n";
-    vertexShader += "}";
+    string vertexShader = "#version ";
+    string fragmentShader = "#version ";
     
-    
-    string fragmentShader = "#version 120\n\n";
-    fragmentShader += "uniform sampler2D image;\n";
-    fragmentShader += "uniform vec3 colorOne;\n";
-    fragmentShader += "uniform vec3 colorTwo;\n";
-    fragmentShader += "uniform vec2 resolution;\n";
-    fragmentShader += "uniform float gradientExponent;\n";
-    fragmentShader += "varying vec2 oTexCoord;\n\n";
-    fragmentShader += "void main(){\n";
-    fragmentShader += "\tgl_FragColor = vec4( mix(colorTwo,colorOne, pow(texture2D(image,oTexCoord).r, gradientExponent)), 1.0);\n";
-    fragmentShader += "}";
+    if(ofIsGLProgrammableRenderer()){
+        vertexShader += "150\n\n";
+        vertexShader += "uniform mat4 modelViewProjectionMatrix;\n";
+        vertexShader += "uniform mat4 textureMatrix;\n\n";
+        vertexShader += "in vec4 position;\n";
+        vertexShader += "in vec4 normal;\n";
+        vertexShader += "in vec4 color;\n";
+        vertexShader += "in vec2 texcoord;\n\n";
+        vertexShader += "out vec2 texCoordVarying;\n\n";
+        vertexShader += "void main(){\n";
+        vertexShader += "\ttexCoordVarying = texcoord;\n";
+        vertexShader += "\tgl_Position = modelViewProjectionMatrix * position;\n";
+        vertexShader += "}";
+        
+        
+        fragmentShader += "150\n\n";
+        fragmentShader += "uniform sampler2D image;\n";
+        fragmentShader += "uniform vec3 colorOne;\n";
+        fragmentShader += "uniform vec3 colorTwo;\n";
+        fragmentShader += "uniform vec2 resolution;\n";
+        fragmentShader += "uniform float gradientExponent;\n\n";
+        fragmentShader += "in vec2 texCoordVarying;\n\n";
+        fragmentShader += "out vec4 outputColor;\n\n";
+        fragmentShader += "void main(){\n";
+        fragmentShader += "\toutputColor = vec4( mix(colorTwo,colorOne, pow(texture(image,texCoordVarying).r, gradientExponent)), 1.0);\n";
+        fragmentShader += "}";
+    } else {
+        vertexShader += "120\n\n";
+        vertexShader += "varying vec2 oTexCoord;\n\n";
+        vertexShader += "void main(){\n";
+        vertexShader += "\toTexCoord = gl_MultiTexCoord0.xy;\n";
+        vertexShader += "\tgl_Position = ftransform();\n";
+        vertexShader += "}";
+        
+        
+        fragmentShader += "120\n\n";
+        fragmentShader += "uniform sampler2D image;\n";
+        fragmentShader += "uniform vec3 colorOne;\n";
+        fragmentShader += "uniform vec3 colorTwo;\n";
+        fragmentShader += "uniform vec2 resolution;\n";
+        fragmentShader += "uniform float gradientExponent;\n";
+        fragmentShader += "varying vec2 oTexCoord;\n\n";
+        fragmentShader += "void main(){\n";
+        fragmentShader += "\tgl_FragColor = vec4( mix(colorTwo,colorOne, pow(texture2D(image,oTexCoord).r, gradientExponent)), 1.0);\n";
+        fragmentShader += "}";
+    }
     
     shader.setupShaderFromSource(GL_VERTEX_SHADER, vertexShader);
     shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragmentShader);

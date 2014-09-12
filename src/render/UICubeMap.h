@@ -6,6 +6,8 @@
 //
 //
 
+#pragma once
+
 #include "UIShader.h"
 
 class UICubeMap : public UIShader {
